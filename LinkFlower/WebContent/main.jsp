@@ -58,6 +58,7 @@
 						<td>2014.4.5</td>
 						<td>2620</td>
 					</tr>
+					<span class="label label-success">Success</span>
 
 					<tr>
 						<td>3</td>
