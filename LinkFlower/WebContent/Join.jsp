@@ -15,7 +15,7 @@
 				<td colspan=3>
 					<center>
 						<img
-							src="C:\Users\youkyung\workspace\Design\WebContent\img\배너.png"
+							src="C:\Users\youkyung\workspace\Design\WebContent\img\배너회원.png"
 							width="300">
 					</center>
 				</td>
