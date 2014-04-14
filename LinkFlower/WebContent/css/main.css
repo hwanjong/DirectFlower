@@ -1,9 +1,6 @@
 @CHARSET "UTF-8";
 
-div.wrap {
-	margin: 2% 10%;
-	
-}
+
 
   #selectable .ui-selecting { background: #FECA40; }
   #selectable .ui-selected { background: #F39814; color: white; }

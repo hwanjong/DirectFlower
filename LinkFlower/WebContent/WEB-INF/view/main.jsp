@@ -3,17 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>진격의 꽃집 메인페이지</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet" type="text/css">
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="//code.jquery.com/jquery-1.9.1.js"></script>
-<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
+<meta charset="UTF-8">
+<title>flossom</title>
 <script>
 	$(document).ready(function() { // 해당 페이지 Loading 후, 
 		$("input[id=address]").attr("disabled", true);
@@ -54,12 +46,11 @@
 
 					<tr>
 						<td>2</td>
-						<td><a href=""></a></td>
+						<td><a href="">꽃바구니 전품목 50% SALE!!</a></td>
 						<td>예진꽃방</td>
 						<td>2014.4.5</td>
 						<td>2620</td>
 					</tr>
-					<span class="label label-success">Success</span>
 
 					<tr>
 						<td>3</td>

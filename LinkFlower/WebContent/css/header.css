@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+.container{
+	margin: 15px auto;
+}
+div.wrap {
+	width: 940px;
+	margin:0 auto;
+}

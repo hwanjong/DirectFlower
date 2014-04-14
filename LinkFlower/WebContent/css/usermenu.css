@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+.vline{
+	height: 400px;
+	margin-right: -50px;
+	border-left: 1px solid rgb(238,238,238);
+}
+
+#mynavbar{
+	margin-top: 30px;
+	margin-left: 30px;
+}
+
+
+.contents{
+	width: 700px;
+	float: left;
+}

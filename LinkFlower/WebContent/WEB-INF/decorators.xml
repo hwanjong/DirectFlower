@@ -1,17 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- 데코레이터 jsp파일의 위치 -->
-<decorators defaultdir="/decorators"> 
-    
+<?xml version="1.0" encoding="ISO-8859-1"?>
 
-    <decorator name="header" page="header.jsp">
-        <pattern>/*</pattern>
-    </decorator>
-    
-    <decorator name="user" page="userMenu.jsp">
-        <pattern>/user/*</pattern>
-    </decorator>
-    <decorator name="shop" page="shopMenu.jsp">
-        <pattern>/shop/*</pattern>
-    </decorator>
+<decorators defaultdir="/decorators">
+	<!-- Any urls that are excluded will never be decorated by Sitemesh -->
+	<excludes>
+		<pattern>/autocomplete*</pattern>
+	</excludes>
 
+	<decorator name="header" page="header.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+
+	<decorator name="user" page="userMenu.jsp">
+		<pattern>/user/*</pattern>
+	</decorator>
+	<decorator name="shop" page="shopMenu.jsp">
+		<pattern>/shop/*</pattern>
+	</decorator>
 </decorators>
