@@ -1,0 +1,12 @@
+HelloController 제작 및 배포하게 되면서 기존의 Servlet(Servlet 별도 학습 필요)과는 약간 다른방식으로 제작하게 됨
+우선 가장 큰 변화는 view페이지들의 이동(jsp파일들) 현재 WEB-INF/view 안으로 전부 이동함
+WEB-INF밑에 있는 자원들은 클라이언트가 요청해도 접근못함. 따라서 이제 jsp로 바로 접근하는것이아니라 Servlet 방식으로 접근 해야함
+1. 우선 Servlet을 기본 학습했다는 가정하에 간단하게 설명하면, 현재 구조는 하나의 Servlet이 모든 요청을 받게되고 이 요청을 분리하여 Controller를 불러내 사용함. 예를 들어서 설명하면, 현재 모든 요청은 .ap로 끝나야함 즉 localhost:8080/LinkFlower/user/orderInfo.ap로 url을 요청함.
+2. 현재 controller패키지에 Controller 두개가 있는데, 이 둘을 열어보면 알겠지만 @RootURL과 @Mapping에 적혀있는 url로 따라들어감(@는 Java annotation이라 불리는 것으로 일종의 기능을 할 수 있는 주석이라고 보면됨). 여기서는 요청 URI(Contextpath인 Akropolis 제외)가 /mypage/decotest.ap이므로 MyPageController의 @RootURL("/mypage")와 우선적으로 매칭되므로 MyPageController 내부로 들어감. 여기서 나머지 /decotest.ap를 찾아봄. @Mapping에 url에 해당되는 함수가 deco이므로 이 요청은 결국 이 함수를 실행시킴.
+3. 이 함수내에서 Model과 Business 로직을 처리하는 적절한 함수들을 불러 원하는 작업후에 ModelView에 담아서 리턴
+4. ModelView 생성시 주어지는 view 이름 즉 여기서는 /user/orderInfo이므로 이 함수가 종료되면, 저 이름 값에 앞에 /WEB-INF/view를 붙이고 마지막에 .jsp를 붙인 페이지로 감 즉 /WEB-INF/view/user/orderInfo.jsp로 가게됨.
+이상이 HelloController의 간략한 설명. 이 내용은 반드시 Servlet 학습후에 볼 것을 권장함. 아니면 멘붕밖에 안옴
+UserPageController에 주석을 달아놨으나, 더 궁금한 사항이 있다면 연락바람.
+추가적으로 Bean도 학습 반드시 해주시기 바랍니다.(bean 학습후에도 함수안에서 쓰고있는 bean이 뭔지 뭐하는건지 도저히 모르겠다 싶으면 주저없이 전화하십쇼.)
+마지막으로 jsp페이지에서 처리한 객체들의 작업은 EL,JSTL을 학습하여서 써주시기 바랍니다. EL,JSTL을 정 못쓰겠다 싶은 분은 wiki 페이지에 자신이 작업한 페이지들을 적으면서 EL,JSTL을 못썼다고 적어주시기 바랍니다. 후에 시간이 남으면 제가 수정을 가하겠습니다.
+EL,JSTL은 못쓰셔도 Servlet과 bean은 반드시 학습하셔서 쓰셔야합니다. 이후에 Mybatis도 설정해서 올리고 쓰는법 대충 알려드리겠습니다.
