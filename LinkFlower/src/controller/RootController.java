@@ -33,6 +33,12 @@ public class RootController {
 		return mv;
 	}
 	
+	@Mapping(url="/order.ap")
+	ModelView getOrder(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/order");
+		return mv;
+	}
+	
 
 	//	Controller 클래스 기본 형태1
 	//	@RootURL(Contextpath 제외한 URL에서 앞부분에서 매칭될 부분)

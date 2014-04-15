@@ -16,8 +16,8 @@
 		<div id="mynavbar">
 			<div id="leftMenu" class="span2">
 				<ul class="nav nav-tabs nav-stacked">
-					<li class="active"><a href="#" class=>주문조회</a></li>
-					<li><a href="#">회원정보수정</a></li>
+					<li class="active"><a href="/LinkFlower/user/orderInfo.ap" class=>주문조회</a></li>
+					<li><a href="/LinkFlower/user/info.ap">회원정보수정</a></li>
 				</ul>
 			</div>
 		</div>
