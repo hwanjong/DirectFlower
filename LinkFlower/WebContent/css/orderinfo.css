@@ -1,5 +1,15 @@
 @CHARSET "UTF-8";
-
+.w100{
+	width:100px;
+}
+.w200{
+	width: 200px;
+}
 #tabs{
 	margin: auto;
+}
+
+.table th, .table td{
+	text-align: center;
+	
 }

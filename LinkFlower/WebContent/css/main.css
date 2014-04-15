@@ -2,7 +2,18 @@
 
 
 
-  #selectable .ui-selecting { background: #FECA40; }
-  #selectable .ui-selected { background: #F39814; color: white; }
-  #selectable { list-style-type: none; margin: 0; padding: 0; }
-  #selectable li { margin: 3px; padding: 0.4em; }
+#selectable .ui-selecting { background: #FECA40; }
+#selectable .ui-selected { background: #F39814; color: white; }
+#selectable { list-style-type: none; margin: 0; padding: 0; }
+#selectable li { margin: 3px; padding: 0.4em; }
+
+#buttoncell{
+	text-align:center;
+	vertical-align: middle;
+}
+
+#search{
+	background-image: url(/LinkFlower/img/search.jpg);
+	width: 225px;
+	height: 225px;
+}

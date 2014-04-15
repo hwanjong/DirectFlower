@@ -19,12 +19,12 @@
 </head>
 <body>
 	<div class="container">
-		<div class="navbar navbar-inverse">
+		<div class="navbar navbar-inverse  mb0">
 			<div class="navbar-inner">
 				<ul class="nav">
 					<li><a href="/LinkFlower/main.ap">Home</a></li>
-					<li><a href="#">Shop</a></li>
-					<li><a href="">About</a></li>
+					<li class="nouse"><a href="#">Shop</a></li>
+					<li class="nouse"><a href="#">About</a></li>
 				</ul>
 				<ul class="nav pull-right">
 					<li><a href="login.ap">Login</a></li>
@@ -33,6 +33,9 @@
 				</ul>
 			</div>
 		</div>
+	</div>
+	<div class="container">
+	<a href="/LinkFlower/main.ap"><img src="/LinkFlower/img/flosum.jpg" width="940px"></a>
 	</div>
 	<decorator:body />
 	<div id="fb-root"></div>

@@ -1,9 +1,19 @@
 @CHARSET "UTF-8";
+.mb0{
+	margin-bottom: 0px;
+}
+.mb20{
+	margin-bottom: 20px;
+}
+.nouse{
+	text-decoration: line-through;
+}
 
 .container{
-	margin: 15px auto;
+	margin: auto;
 }
 div.wrap {
 	width: 940px;
 	margin:0 auto;
 }
+
