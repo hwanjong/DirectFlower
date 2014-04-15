@@ -77,11 +77,12 @@
 			<table class="table table-condensed">
 			<tr>
 			<th class="w100">주문정보</th>
-			<th>방문</th>
+			<th class="w45">방문</th>
 			<th class="w200">배송지</th>
-			<th>수령인</th>
+			<th width="62px;">수령인</th>
 			<th>요청시간</th>
-			<th >꽃집</th>
+			<th>꽃집</th>
+			<th class="w50">사진</th>
 			</tr>
 			<tr>
 			<td><a href="#">발렌타인(소)</a></td>
@@ -90,6 +91,7 @@
 			<td>김아영</td>
 			<td>14-04-16,11:30</td>
 			<td><a href="#">서니플라워</a></td>
+			<td><a href="#"><button><img src="/LinkFlower/img/photo.jpg"></button></a></td>
 			</tr>
 			
 

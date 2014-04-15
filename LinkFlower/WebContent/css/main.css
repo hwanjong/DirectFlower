@@ -17,3 +17,16 @@
 	width: 225px;
 	height: 225px;
 }
+
+hr{
+	border-top: 0px;
+	border-bottom: 0px;
+	border: 1px groove;
+}
+.wrap div{
+	border: 1px groove;
+	padding: 0px 10px;
+	margin-bottom: 15px;
+	border-left: 0px;
+	border-right: 0px;
+}

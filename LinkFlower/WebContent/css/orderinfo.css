@@ -5,6 +5,12 @@
 .w200{
 	width: 200px;
 }
+.w50{
+	width: 50px;
+}
+.w45{
+	width:45px;
+}
 #tabs{
 	margin: auto;
 }

@@ -27,9 +27,9 @@
 					<li class="nouse"><a href="#">About</a></li>
 				</ul>
 				<ul class="nav pull-right">
-					<li><a href="login.ap">Login</a></li>
-					<li><a href="join.ap">Join</a></li>
-					<li><a href="user/orderInfo.ap">My Page</a></li>
+						<li><a href="/LinkFlower/login.ap">Login</a></li>
+					<li><a href="/LinkFlower/join.ap">Join</a></li>
+					<li><a href="/LinkFlower/user/orderInfo.ap">My Page</a></li>
 				</ul>
 			</div>
 		</div>
