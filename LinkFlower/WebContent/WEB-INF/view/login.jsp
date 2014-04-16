@@ -4,47 +4,40 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Login</title>
+<title>Login 해보까?(수정됨)</title>
 </head>
 <body>
 	<center>
-		<img src="/LinkFlower/img/login/배너.png"
-			width="300"><br>
+		<img src="/LinkFlower/img/login/banner.PNG" width="300"><br>
 		<br>
 		<hr width="55%" size="5" color="green">
 
 		<form>
+			<table>
 
-			<tr>
-				<td align="center"><img
-					src="/LinkFlower/img/login/id.png"></td>
-				<td><input type=text size=30 value=""></td>
+				<tr>
+					<td align="center"><img src="/LinkFlower/img/login/id.PNG"></td>
+					<td><input type=text size=30 value=""></td>
 
-			</tr>
-			<br>
-			<br>
+				</tr>
 
-			<tr>
-				<td align="center"><img
-					src="/LinkFlower/img/login/pw.png"></td>
-				<td><input type=text size=30 value=""></td>
+				<tr>
+					<td align="center"><img src="/LinkFlower/img/login/pw.PNG"></td>
+					<td><input type=text size=30 value=""></td>
 
-			</tr>
-			<br>
-			<br>
-			<br>
+				</tr>
 
-			<hr width="55%" size="5" color="green">
-			<br>
-			<br>
-			<tr>
-				<td><input type="button" value="로그인">&nbsp;
-				<td><input type="button" value="회원가입"
-					onclick="javascript:window.location='Join.jsp'">
-			</tr>
+				<!--hr width="55%" size="5" color="green"-->
+				
+				<tr>
+					<td><input type="button" value="로그인">&nbsp;
+					<td><input type="button" value="회원가입"
+						onclick="javascript:window.location='join.ap'">
+				</tr>
+			</table>
 		</form>
-
 	</center>
+
 
 
 </body>

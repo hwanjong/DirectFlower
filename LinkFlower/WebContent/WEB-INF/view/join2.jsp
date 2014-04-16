@@ -15,9 +15,7 @@
 				<tr>
 					<td colspan=3>
 						<center>
-							<img
-								src="C:\Users\youkyung\workspace\Design\WebContent\img\login\배너회원.png"
-								width="300">
+							<img src="/LinkFlower/img/login/join.PNG" width="300">
 						</center>
 					</td>
 				</tr>
