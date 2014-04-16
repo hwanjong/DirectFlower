@@ -17,5 +17,19 @@
 
 .table th, .table td{
 	text-align: center;
+}
+
+p{
+	font-weight: bold;
+}
+
+.temp{
+	background-color: green; 
+	height: 300px;
+	margin: 0px 50px 20px 50px;
+}
+.centerdiv{
+	text-align:center;
+	margin-bottom: 50px;
 	
 }

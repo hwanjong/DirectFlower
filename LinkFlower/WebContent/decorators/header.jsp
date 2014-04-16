@@ -24,6 +24,7 @@
 				<ul class="nav">
 					<li><a href="/LinkFlower/main.ap">Home</a></li>
 					<li class="nouse"><a href="#">Shop</a></li>
+					<li class="nouse"><a href="#">SiteMap</a></li>
 					<li class="nouse"><a href="#">About</a></li>
 				</ul>
 				<ul class="nav pull-right">

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>내 주문정보</title>
-<link href="/LinkFlower/css/orderinfo.css" rel="stylesheet"
+<link href="/LinkFlower/css/common.css" rel="stylesheet"
 	type="text/css">
 <script>
 	$(function() {

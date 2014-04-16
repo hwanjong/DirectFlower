@@ -7,6 +7,18 @@
 <title>회원정보수정</title>
 <link href="/LinkFlower/css/userinfo.css" rel="stylesheet"
 	type="text/css">
+<script type="text/javascript">
+	$(function() {
+	$(".contents").hide();
+		if (123 == prompt("암호를 입력하세요(임시비번:123)")) {
+			$(".contents").show();		
+		} else {
+			alert("비밀번호가 일치하지 않습니다.");
+			window.location.href = "/LinkFlower/user/orderInfo.ap";
+		}
+
+	});
+</script>
 </head>
 <body>
 	<form class="form-horizontal">
@@ -20,7 +32,8 @@
 		<div class="control-group">
 			<label class="control-label" for="inputPassword">Password</label>
 			<div class="controls">
-				<input type="password" id="inputPassword" placeholder="Password" value="357735">
+				<input type="password" id="inputPassword" placeholder="Password"
+					value="357735">
 			</div>
 		</div>
 
