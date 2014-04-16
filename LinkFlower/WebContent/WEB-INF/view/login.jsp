@@ -10,10 +10,23 @@
 	<center>
 		<img src="/LinkFlower/img/login/banner.PNG" width="300"><br>
 		<br>
-		<hr width="55%" size="5" color="green">
+		<hr width="55%" size="3" color="green">
 
 		<form>
 			<table>
+
+				<tr>
+					<td align="left">회원유형<br>
+					<br></td>
+
+					<td>&nbsp;&nbsp; <input type="radio" name="member"
+						value="member" checked> 일반회원 <input type="radio"
+						name="member" value="store">기업고객<br>
+					<br>
+					</td>
+
+
+				</tr>
 
 				<tr>
 					<td align="center"><img src="/LinkFlower/img/login/id.PNG"></td>
@@ -27,15 +40,20 @@
 
 				</tr>
 
-				<!--hr width="55%" size="5" color="green"-->
-				
-				<tr>
-					<td><input type="button" value="로그인">&nbsp;
-					<td><input type="button" value="회원가입"
-						onclick="javascript:window.location='join.ap'">
-				</tr>
 			</table>
+
+			<hr width="55%" size="3" color="green">
+
 		</form>
+		<table>
+			<tr>
+				<td><input type="button" value="로그인">&nbsp;
+				<td><input type="button" value="회원가입"
+					onclick="javascript:window.location='join.ap'">
+			</tr>
+		</table>
+
+
 	</center>
 
 
