@@ -18,6 +18,7 @@ public class UserPageController {
 	
 	@Mapping(url="/orderInfo.ap") //bean 사용 안할시 bean 빼면됨
 	ModelView getOrderInfo(HttpServletRequest request,HttpServletResponse response){ // bean 사용 안할시 Object bean 빼면됨
+		
 		ModelView mv = new ModelView("/user/orderInfo");
 		return mv;
 	}

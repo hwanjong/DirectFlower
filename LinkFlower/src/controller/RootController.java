@@ -17,6 +17,13 @@ public class RootController {
 	
 	@Mapping(url="/main.ap")
 	ModelView getMain(HttpServletRequest request,HttpServletResponse response){
+		
+		
+		
+		
+		
+		
+		
 		ModelView mv = new ModelView("/main");
 		return mv;
 	}

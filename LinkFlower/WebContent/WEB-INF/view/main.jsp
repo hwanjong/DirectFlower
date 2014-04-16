@@ -49,7 +49,6 @@
 </head>
 <body>
 	<div class="wrap">
-
 		<div id="event">
 			<table class="table">
 				<thead>

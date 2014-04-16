@@ -8,7 +8,7 @@
 </head>
 <body>
 	<center>
-		<img src="C:\Users\youkyung\workspace\Design\WebContent\img\배너.png"
+		<img src="/LinkFlower/img/login/banner.PNG"
 			width="300"><br>
 		<br>
 		<hr width="55%" size="5" color="green">
@@ -17,7 +17,7 @@
 
 			<tr>
 				<td align="center"><img
-					src="C:\Users\youkyung\workspace\Design\WebContent\img\id.png"></td>
+					src="/LinkFlower/img/login/id.PNG"></td>
 				<td><input type=text size=30 value=""></td>
 
 			</tr>
@@ -26,7 +26,7 @@
 
 			<tr>
 				<td align="center"><img
-					src="C:\Users\youkyung\workspace\Design\WebContent\img\pw.png"></td>
+					src="/LinkFlower/img/login/pw.PNG"></td>
 				<td><input type=text size=30 value=""></td>
 
 			</tr>
@@ -40,7 +40,7 @@
 			<tr>
 				<td><input type="button" value="로그인">&nbsp;
 				<td><input type="button" value="회원가입"
-					onclick="javascript:window.location='Join.jsp'">
+					onclick="javascript:window.location='join.ap'">
 			</tr>
 		</form>
 
