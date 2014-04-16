@@ -1,42 +1,92 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>좋아하는 꽃집</title>
-
 <script type="text/javascript">
-//작성을 누르면 실행되는 함수
-	function btnOk() {
-		var table1 = document.getElementById("table1"); //테이블 을가져온다
-		var tr = document.createElement("tr"); //<tr>태그를 만든다.
-		var text1 = document.getElementById("text1"); //입력된 text input을 가져온다.
-		var today = new Date(); //현재시간을 가져온다
-		tr.innerHTML = "<td><SPAN STYLE='background-color:yellow;'>" //html코드를 만든다.
-				+ text1.value  //입력된 값을 넣는다.
-				+ "&nbsp;&nbsp;"
-				+ today  //현재날자를 넣는다.
-				+ "</span>&nbsp;<input type='button' value='삭제' onClick='remove(this)' /></td> "; //삭제버튼을 만든다. 클릭시 remove실행
-		table1.appendChild(tr); //테이블에 append한다.
-		text1.value = ""; //인풋텍스트박스를 초기화한다.
-	}
+function recalculate() {
+	var sum = 0;
+	$("#tab tbody tr").each(function() {
+		var unit_price = parseInt($(this).find(".unit_price").val());
+		var qty = parseInt($(this).find(".qty").val());
+		if (!isNaN(unit_price) && !isNaN(qty) ) {
+			var price = unit_price * qty;
+			$(this).find(".price").text(price);
+			sum = sum + price;
+		}
+	});
+	$("#sum").text(sum);
+}
 
-//삭제하는함수
-	function remove(obj) {
-		var delObj = obj.parentElement.parentElement;//부모의 elements를 얻느다.
-		delObj.parentNode.removeChild(delObj); //자식을 삭제한다.
-	}
+$(function() {
+	$('#add').click(function() {
+		$("#tab").find("tbody").append("<tr>"+$('#sample_row').find('tr').html()+"</tr>");
+	});
+	$('#del').click(function() {
+		if (confirm("정말 삭제하시겠습니까?")) {
+			$("tr input[type='checkbox']").each(function() {
+				if ($(this).attr('checked')) {
+					$(this).parents("tr").empty();
+				}
+			});
+			recalculate();
+		}
+	});
+	$('#add').click();
+});
 </script>
-
 </head>
 <body>
 <div>
-		<input type="text" id="text1" style="width: 300px;" /> <input
-			type="button" value="작성" onClick="btnOk()" />
-	</div>
-	<table id="table1">
+	<table id="tab" border="1">
+		<thead>
+		<tr>
+			<th></th>
+			<th>상품명</th>
+			<th>단가</th>
+			<th>개수</th>
+			<th>가격</th>
+		</tr>
+		</thead>
+		<tbody>
+		</tbody>
+		<tfoot>
+		<tr>
+			<th colspan="4">합계</th>
+			<th><span id="sum" class="price"></span></th>
+		</tr>
+		</tfoot>
 	</table>
+	<input type="button" value="물품추가" id="add">
+	<input type="button" value="물품삭제" id="del">
+</div>
 
+<div id="sample_row" style="display:none">
+	<table>
+	<tr>
+		<td><input type='checkbox'></td>
+		<td><input type='text' size='15'></td>
+		<td><input type='text' size='10' class='unit_price' onchange='recalculate();'></td>
+		<td>
+			<select class='qty' onchange='recalculate();'>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+				<option>8</option>
+				<option>9</option>
+				<option>10</option>
+			</select>
+		</td>
+		<td align="right"><span class='price'></span></td>
+	</tr>
+	</table>
+</div>
+	
 </body>
 </html>
