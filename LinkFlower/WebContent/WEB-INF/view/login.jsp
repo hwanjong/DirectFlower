@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Login 해보까?(수정됨)</title>
+<title>Login</title>
 </head>
 <body>
 	<center>
-		<img src="C:\Users\youkyung\workspace\Design\WebContent\img\배너.png"
+		<img src="/LinkFlower/img/login/배너.png"
 			width="300"><br>
 		<br>
 		<hr width="55%" size="5" color="green">
@@ -17,7 +17,7 @@
 
 			<tr>
 				<td align="center"><img
-					src="C:\Users\youkyung\workspace\Design\WebContent\img\id.png"></td>
+					src="/LinkFlower/img/login/id.png"></td>
 				<td><input type=text size=30 value=""></td>
 
 			</tr>
@@ -26,7 +26,7 @@
 
 			<tr>
 				<td align="center"><img
-					src="C:\Users\youkyung\workspace\Design\WebContent\img\pw.png"></td>
+					src="/LinkFlower/img/login/pw.png"></td>
 				<td><input type=text size=30 value=""></td>
 
 			</tr>

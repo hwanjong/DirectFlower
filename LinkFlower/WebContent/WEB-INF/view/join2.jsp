@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Join 하자</title>
+<title>Join</title>
 </head>
 <body>
 
@@ -16,7 +16,7 @@
 					<td colspan=3>
 						<center>
 							<img
-								src="C:\Users\youkyung\workspace\Design\WebContent\img\배너회원.png"
+								src="C:\Users\youkyung\workspace\Design\WebContent\img\login\배너회원.png"
 								width="300">
 						</center>
 					</td>
