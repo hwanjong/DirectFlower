@@ -84,8 +84,7 @@
 				<tr>
 					<td colspan=3>
 						<center>
-							<input type="button" value="로그인">&nbsp; <input
-								type="button" value="회원가입">
+							<input type="button" value="회원가입">
 						</center>
 					<td>
 				</tr>
