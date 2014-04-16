@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Join 하자</title>
+<title>Join</title>
 </head>
 <body>
 
@@ -15,9 +15,7 @@
 				<tr>
 					<td colspan=3>
 						<center>
-							<img
-								src="/LinkFlower/img/login/join.PNG"
-								width="300">
+							<img src="/LinkFlower/img/login/join.PNG" width="300">
 						</center>
 					</td>
 				</tr>
