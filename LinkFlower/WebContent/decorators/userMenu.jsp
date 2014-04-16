@@ -17,6 +17,7 @@
 			<div id="leftMenu" class="span2">
 				<ul class="nav nav-tabs nav-stacked">
 					<li class="active"><a href="/LinkFlower/user/orderInfo.ap" class=>주문조회</a></li>
+					<li><a href="/LinkFlower/user/like.ap" class=>좋아하는꽃집</a></li>
 					<li><a href="/LinkFlower/user/info.ap">회원정보수정</a></li>
 				</ul>
 			</div>

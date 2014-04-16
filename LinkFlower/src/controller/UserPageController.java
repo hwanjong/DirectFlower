@@ -28,6 +28,11 @@ public class UserPageController {
 		ModelView mv = new ModelView("/user/userInfo");
 		return mv;
 	}
+	@Mapping(url="/like.ap")
+	ModelView getUserLike(HttpServletRequest request, HttpServletResponse response){
+		ModelView mv = new ModelView("/user/userLike");
+		return mv;
+	}
 	
 	
 //	@Mapping(url="/decotest.ap",bean="bean.BeanTest") //bean 사용 안할시 bean 빼면됨
