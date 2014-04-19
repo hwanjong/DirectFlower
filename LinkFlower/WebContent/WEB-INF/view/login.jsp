@@ -12,7 +12,7 @@
 		<br>
 		<hr width="55%" size="3" color="green">
 
-		<form>
+		<form action="/LinkFlower/login.ap" method="post">
 			<table>
 
 				<tr>
@@ -30,13 +30,13 @@
 
 				<tr>
 					<td align="center"><img src="/LinkFlower/img/login/id.PNG"></td>
-					<td><input type=text size=30 value=""></td>
+					<td><input type=text name="user_id" size=30 value=""></td>
 
 				</tr>
 
 				<tr>
 					<td align="center"><img src="/LinkFlower/img/login/pw.PNG"></td>
-					<td><input type=text size=30 value=""></td>
+					<td><input type=text name="password" size=30 value=""></td>
 
 				</tr>
 

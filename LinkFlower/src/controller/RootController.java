@@ -5,6 +5,7 @@ import hello.annotation.RootURL;
 import hello.mv.ModelView;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,31 +15,31 @@ import bean.UserInfo;
 
 @RootURL("/")
 public class RootController {
-	
+
 	@Mapping(url="/main.ap")
 	ModelView getMain(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/main");
 		return mv;
 	}
-	
+
 	@Mapping(url="/login.ap")
 	ModelView getLogin(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/login");
 		return mv;
 	}
-	
+
 	@Mapping(url="/join.ap")
 	ModelView getJoin(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/join2");
 		return mv;
 	}
-	
+
 	@Mapping(url="/order.ap")
 	ModelView getOrder(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/order");
 		return mv;
 	}
-	
+
 	@Mapping(url="/findShop.ap",method="POST")
 	ModelView getFindShop(HttpServletRequest request,HttpServletResponse response){
 		try {
@@ -49,7 +50,7 @@ public class RootController {
 		String select = request.getParameter("optionsRadios");
 		String inputValue;
 		System.out.println("select : "+select);
-		
+
 		if(select.equals("option1")){
 			System.out.println("내위치로찾기");
 			inputValue="내위치";
@@ -60,21 +61,22 @@ public class RootController {
 			System.out.println(request.getParameter("shopName"));
 			inputValue=request.getParameter("shopName");
 		}
-		
+
 		HttpSession session = request.getSession();
+
 		ModelView mv = new ModelView("/findShop");
 		mv.setModel("select", select);
-		
+
 		UserInfo user = new UserInfo();
 		user.setUserId(select);
 		mv.setModel("user", user);
-		
+
 		request.setAttribute("value", inputValue);
-//		request.setAttribute("model",mv);// 가 자동으로 등록됨
+		//		request.setAttribute("model",mv);// 가 자동으로 등록됨
 		//따라서 꺼낼시에  ((ModelView)request.getAttribute("model")).getModel("id"); 로 꺼낸다
 		return mv;
 	}
-	
+
 	@Mapping(url="/findShop.ap")
 	ModelView getFindShopView(HttpServletRequest request,HttpServletResponse response){
 
