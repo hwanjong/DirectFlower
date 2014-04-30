@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+
+	<resultMap type="User" id="find">
+		<id column="user_id" property="userId" />
+		<id column="phone_num" property="phoneNum" />
+	</resultMap>
+
+	
+	<insert id="insertUser" parameterType="User">
+		insert into	user_list(user_id,pw,name,phone_num)
+		values(#{userId},#{pw},#{name},#{phoneNum})
+	</insert>
+	
+	<update id="changePw" parameterType="User">
+	    update user_list set pw=#{pw} where user_id=#{userId}
+	</update>
+
+	<select id="getUserInfo" parameterType="User" resultType="User"
+		resultMap="find"> 
+		select user_id,pw,name,phone_num FROM User_List
+		WHERE user_id
+		= #{userId}
+	</select>
+
+
+</mapper>

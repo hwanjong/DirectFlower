@@ -24,7 +24,8 @@ CREATE TABLE post
 (
 	shop_num      NUMBER(8) NULL,
 	user_comment  VARCHAR2(50) NULL,
-	score         NUMBER(8) NULL
+	score         NUMBER(8) NULL,
+	user_id	VARCHAR2(50) NULL
 )
 ;
 

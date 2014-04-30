@@ -2,22 +2,29 @@ package bean;
 
 import java.io.Serializable;
 
-public class UserInfo implements Serializable{
+public class User implements Serializable{
 	private String userId;
-	private String userPassword;
+	private String pw;
+	private String name;
 	private String phoneNum;
-		
+	
 	public String getUserId() {
 		return userId;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getUserPassword() {
-		return userPassword;
+	public String getPw() {
+		return pw;
 	}
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getPhoneNum() {
 		return phoneNum;
@@ -25,7 +32,6 @@ public class UserInfo implements Serializable{
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
-	
-	
+
 	
 }

@@ -20,9 +20,10 @@
 			</dataSource>
 		</environment>
 	</environments>
-	<!-- 
+
 	<mappers>
 		<mapper resource="mapper/UserMapper.xml" />
+		<!-- 
 		<mapper resource="mapper/MainTopicMapper.xml" />
 		<mapper resource="mapper/OpinionMapper.xml" />
 		<mapper resource="mapper/InterestMapper.xml" />
@@ -30,6 +31,7 @@
 		<mapper resource="mapper/ParticipantMapper.xml" />
 		<mapper resource="mapper/CreateMapper.xml" />
 		<mapper resource="mapper/EtcMapper.xml" />
+		 -->
 	</mappers>
-	 -->
+
 </configuration>
