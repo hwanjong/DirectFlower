@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,20 +24,28 @@
 			<div class="navbar-inner">
 				<ul class="nav">
 					<li><a href="/LinkFlower/main.ap">Home</a></li>
-					<li class="nouse"><a href="#">Shop</a></li>
 					<li class="nouse"><a href="#">SiteMap</a></li>
 					<li class="nouse"><a href="#">About</a></li>
 				</ul>
 				<ul class="nav pull-right">
-						<li><a href="/LinkFlower/login.ap">Login</a></li>
-					<li><a href="/LinkFlower/join.ap">Join</a></li>
-					<li><a href="/LinkFlower/user/orderInfo.ap">My Page</a></li>
+					<c:choose>
+						<c:when test="${empty user}">
+							<li><a href="/LinkFlower/login.ap">Login</a></li>
+							<li><a href="/LinkFlower/join.ap">Join</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="/LinkFlower/user/orderInfo.ap">My Page</a></li>
+							<li><a href="/LinkFlower/logout.ap">Logout</a></li>
+						</c:otherwise>
+					</c:choose>
+					<li class="nouse"><a href="#">ShopPage</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="container">
-	<a href="/LinkFlower/main.ap"><img src="/LinkFlower/img/flosum.jpg" width="940px"></a>
+		<a href="/LinkFlower/main.ap"><img
+			src="/LinkFlower/img/flosum.jpg" width="100%"></a>
 	</div>
 	<decorator:body />
 	<div id="fb-root"></div>

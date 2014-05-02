@@ -90,10 +90,14 @@
 								function(){
 									if($("input[name=optionsRadios]:checked").val() == "option4"){
 										alert("꽃집찾을방법을 선택하세요!");
-										}else if($("#lat").val()==""){
-											alert("주소검색버튼을 눌려주세요.");
-											$("input[id=optionsRadios4]").attr("checked",true);
+									}else{
+										if($("#lat").val()==""){
+											alert("위치가 검색 되지 않았습니다. 위치를검색해주세요");
+										}else{
+											$("form").submit();
 										}
+										$("input[id=optionsRadios4]").attr("checked",true);
+									}
 								});
 					});
 </script>
@@ -136,7 +140,7 @@
 		</div>
 
 		<div id="find">
-			<form action="main.ap" method="POST">
+			<form action="findshop.ap" method="POST">
 				<table class="table">
 					<thead>
 						<tr class="success">
@@ -149,14 +153,15 @@
 									checked> 내 위치로 찾기
 							</label></td>
 							<td rowspan="3" id="buttoncell">
-								<button type="submit" class="btn btn-default" id="search"></button>
+								<button type="button" class="btn btn-default" id="search"></button>
 							</td>
 						</tr>
 						<tr>
 							<td><label class="radio"> <input type="radio"
 									name="optionsRadios" id="optionsRadios2" value="option2">
 									배달 주소지로 찾기
-							</label> <input id="address" name="address" class="span5" type="text"
+							</label> 
+							<input id="address" name="address" class="span5" type="text"
 								placeholder="주소입력..">
 								<button id="addressSearch" type="button" style="margin-bottom: 10px;">
 									<i class="icon-search"></i>

@@ -5,6 +5,13 @@
 .mb20{
 	margin-bottom: 20px;
 }
+.ml40{
+	margin-left: 40px;
+}
+
+.ib{
+	display: inline-block;
+}
 .nouse{
 	text-decoration: line-through;
 }
@@ -17,3 +24,8 @@ div.wrap {
 	margin:0 auto;
 }
 
+span {
+	font-weight: bold;
+	margin-right: 10pt;
+	margin-bottom: 5pt;
+}

@@ -1,4 +1,67 @@
 @CHARSET "UTF-8";
 
-#map{
+#event{
+	border: 1px groove;
+	margin: 10px 0px;
+	padding: 5px;
 }
+#map {
+	border: 1px groove;
+	padding: 5px;
+	
+}
+
+#map_canvas {
+	width: 500px;
+	height: 500px;
+	display: inline-block;
+}
+
+#listView {
+	width: 380px;
+	height: 460px;
+	margin-left: 20px; 
+	padding: 20px 10px;
+	vertical-align: top;
+	display: inline-block;
+	border: 1px groove;
+	
+}
+.progress{
+	width: 90%;
+}
+#shopInfo{
+	margin-top: 20px;
+	margin-bottom:50px;
+	padding: 10px;
+	border: 1px groove;
+}
+.shop{
+	width :30%;
+	height: 295px;
+	padding: 10px;
+	border: 1px groove;
+	display: inline-block;
+}
+.shop #like{
+	float: right;
+}
+.infoList{
+	width :45%;
+	height: 295px;
+	padding: 10px;
+	border: 1px groove;
+	display: inline-block;
+	vertical-align: top;
+}
+.send{
+	padding: 10px;
+	text-align: center;
+}
+
+#selectable .ui-selecting { background: #FECA40; }
+  #selectable .ui-selected { background: #F39814; color: white; }
+  #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #selectable li { margin: 3px; padding: 0.4em; font-size: 1.0em; height: 18px; cursor: pointer;}
+  
+  } 

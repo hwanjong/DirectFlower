@@ -3,7 +3,8 @@
 <decorators defaultdir="/decorators">
 	<!-- Any urls that are excluded will never be decorated by Sitemesh -->
 	<excludes>
-		<pattern>/autocomplete*</pattern>
+		<pattern>/idCheck.ap</pattern>
+		<pattern>/popupLogin.ap</pattern>
 	</excludes>
 
 	<decorator name="header" page="header.jsp">

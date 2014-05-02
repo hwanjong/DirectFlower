@@ -4,13 +4,12 @@ import hello.annotation.Mapping;
 import hello.annotation.RootURL;
 import hello.mv.ModelView;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import dao.UserDAO;
+
+import bean.User;
 
 
 @RootURL("/user")
@@ -28,6 +27,20 @@ public class UserPageController {
 		ModelView mv = new ModelView("/user/userInfo");
 		return mv;
 	}
+	@Mapping(url="/info.ap",method="POST", bean="bean.User")
+	ModelView changeInfo(HttpServletRequest request,HttpServletResponse response,Object bean){
+		User user = (User) bean;
+		UserDAO userDao= new UserDAO();
+		ModelView mv = new ModelView("/user/orderInfo");
+		if(userDao.changeInfo(user)){
+			request.getSession().setAttribute("user", user);
+		}else{
+			mv.setView("/fail");
+			mv.setModel("error", "101");
+		}
+		return mv;
+	}
+	
 	@Mapping(url="/like.ap")
 	ModelView getUserLike(HttpServletRequest request, HttpServletResponse response){
 		ModelView mv = new ModelView("/user/userLike");

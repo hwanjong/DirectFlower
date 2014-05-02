@@ -7,6 +7,7 @@
 	<resultMap type="User" id="find">
 		<id column="user_id" property="userId" />
 		<id column="phone_num" property="phoneNum" />
+		<id column="shop_num" property="shopNum" />
 	</resultMap>
 
 	
@@ -15,13 +16,20 @@
 		values(#{userId},#{pw},#{name},#{phoneNum})
 	</insert>
 	
-	<update id="changePw" parameterType="User">
-	    update user_list set pw=#{pw} where user_id=#{userId}
+	<update id="changeInfo" parameterType="User">
+	    update user_list set pw=#{pw}, name=#{name}, phone_num=#{phoneNum} where user_id=#{userId}
 	</update>
 
 	<select id="getUserInfo" parameterType="User" resultType="User"
 		resultMap="find"> 
-		select user_id,pw,name,phone_num FROM User_List
+		select user_id,pw,name,phone_num,shop_num FROM User_List
+		WHERE user_id
+		= #{userId} and pw=#{pw}
+	</select>
+	
+	<select id="checkId" parameterType="String" resultType="User"
+		resultMap="find"> 
+		select user_id,pw,name,phone_num,shop_num FROM User_List
 		WHERE user_id
 		= #{userId}
 	</select>

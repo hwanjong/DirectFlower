@@ -29,30 +29,49 @@ public class UserDAO {
 	
 	public User getUser(User user){
 		SqlSession session = sqlSessionFactory.openSession();
-		User user2 =null;
+		User findUser =null;
 		try{
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			System.out.println("여기실행됨"+user.getUserId());
-			user2=mapper.getUserInfo(user);
+			findUser=mapper.getUserInfo(user);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		return user2;
+		return findUser;
 	}
 	
-	public void changePw(User user){
+	public boolean checkId(String userId){
+		SqlSession session = sqlSessionFactory.openSession();
+		User findUser =null;
+		try{
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			findUser=mapper.checkId(userId);
+			if(findUser==null){
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return true;
+	}
+	
+	public boolean changeInfo(User user){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			System.out.println("여기도실행됨");
-			mapper.changePw(user);
+			mapper.changeInfo(user);
+			session.commit();
 		}catch(Exception e){
 			e.printStackTrace();
+			return false;
 		}finally{
 			session.close();
 		}
+		return true;
 	}
+	
 
 }

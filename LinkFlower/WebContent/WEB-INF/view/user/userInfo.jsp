@@ -10,30 +10,44 @@
 <script type="text/javascript">
 	$(function() {
 	$(".contents").hide();
-		if (123 == prompt("암호를 입력하세요(임시비번:123)")) {
+		if ('${user.pw}' == prompt("암호를 입력하세요")) {
 			$(".contents").show();		
 		} else {
 			alert("비밀번호가 일치하지 않습니다.");
 			window.location.href = "/LinkFlower/user/orderInfo.ap";
 		}
-
 	});
+	
+	function submitButton(){
+		if($("#inputId").val()==""||$("#inputPassword").val()==""
+			||$("#inputPassword2").val()==""||$("#inputName").val()==""
+			||$("#inputPhoneNumber").val()==""){
+		alert("빈칸없이 입력하세요");
+	}else{
+		if($("#inputPassword").val()==$("#inputPassword2").val()){
+			$("#inputId").attr("disabled",false);
+			$("form").submit();
+		}else{
+			$("#confirm").html('비밀번호 불일치!');
+		}
+	}
+		
+	}
 </script>
 </head>
 <body>
-	<form class="form-horizontal">
+	<form class="form-horizontal" method="POST" action="/LinkFlower/user/info.ap">
 		<div class="control-group">
 			<label class="control-label" for="inputEmail">I D</label>
 			<div class="controls">
-				<input type="text" id="inputId" placeholder="Id" value="hwan7287">
+				<input type="text" id="inputId" placeholder="Id" name="userId" disabled value="${user.userId}">
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label" for="inputPassword">Password</label>
 			<div class="controls">
-				<input type="password" id="inputPassword" placeholder="Password"
-					value="357735">
+				<input type="password" id="inputPassword" placeholder="Password" name="pw" value="${user.pw}">
 			</div>
 		</div>
 
@@ -41,30 +55,30 @@
 			<label class="control-label" for="inputPassword">Password
 				Confirm</label>
 			<div class="controls">
-				<input type="password" id="inputPassword2" placeholder="Password">
+				<input type="password" id="inputPassword2" placeholder="Password"> <span id="confirm" style="color: red;"></span>
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label">Name</label>
 			<div class="controls">
-				<input type="text" id="inputPhoneNumber" placeholder="Name"
-					value="최환종">
+				<input type="text" id="inputName"  placeholder="Name" name="name"
+					value="${user.name}">
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label">Phone Number</label>
 			<div class="controls">
-				<input type="text" id="inputPhoneNumber" placeholder="PhoneNumber"
-					value="010-2625-3577">
+				<input type="text" id="inputPhoneNumber" name="phoneNum" placeholder="PhoneNumber"
+					value="${user.phoneNum}">
 			</div>
 		</div>
 
 		<div class="control-group">
 			<div class="controls">
-				<button type="submit" class="btn btn-danger">취 소</button>
-				<button type="submit" class="btn btn-success">정보수정</button>
+				<button type="button" class="btn btn-danger" onclick="window.location.reload()">취 소</button>
+				<button type="button" class="btn btn-success" onclick="submitButton()">정보수정</button>
 			</div>
 		</div>
 	</form>

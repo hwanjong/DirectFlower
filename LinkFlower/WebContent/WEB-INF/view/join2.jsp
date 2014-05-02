@@ -1,98 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Join</title>
+<meta charset="UTF-8">
+<link href="/LinkFlower/css/join.css" rel="stylesheet">
 </head>
 <body>
-
-	<form>
-		<center>
-			<table>
-
-				<tr>
-					<td colspan=3>
-						<center>
-							<img src="/LinkFlower/img/login/join.PNG" width="300">
-						</center>
-					</td>
-				</tr>
-
-				<tr>
-					<td colspan=3>
-						<hr width="100%" size="5" color="green">
-					</td>
-				</tr>
-
-				<tr>
-					<td align="left">¾ÆÀÌµð</td>
-					<td>&nbsp;&nbsp; <input type=text size="30" value="">
-					</td>
-					<td>&nbsp; <input type="button" value="Áßº¹È®ÀÎ">
-					</td>
-				</tr>
-
-				<tr>
-					<td align="left">ºñ¹Ð¹øÈ£</td>
-					<td>&nbsp;&nbsp; <input type=text size="30" value="">
-					</td>
-				</tr>
-
-				<tr>
-					<td align="left">ºñ¹Ð¹øÈ£ È®ÀÎ</td>
-					<td>&nbsp;&nbsp; <input type=text size="30" value="">
-					</td>
-				</tr>
-
-				<tr>
-					<td align="left">ÈÞ´ëÀüÈ­</td>
-
-					<td>&nbsp;&nbsp; <select name="phone">
-
-							<option value="010">010</option>
-							<option value="011">011</option>
-							<option value="016">016</option>
-							<option value="017">017</option>
-							<option value="018">018</option>
-							<option value="019">019</option>
-
-					</select>- <input type=text size=4 value="">- <input type=text
-						size=4 value="">
-					</td>
-					<td>&nbsp; <input type="button" value="Áßº¹È®ÀÎ">
-					</td>
-
-				</tr>
-
-				<tr>
-					<td align="left">È¸¿øÀ¯Çü</td>
-
-					<td>&nbsp;&nbsp; <input type="radio" name="member"
-						value="member" checked> ÀÏ¹ÝÈ¸¿ø <input type="radio"
-						name="member" value="store">±â¾÷°í°´
-					</td>
-				</tr>
-
-				<tr>
-					<td colspan=3>
-						<hr width="100%" size="5" color="green">
-					</td>
-				</tr>
-
-				<tr>
-					<td colspan=3>
-						<center>
-							<input type="button" value="È¸¿ø°¡ÀÔ">
-						</center>
-					<td>
-				</tr>
-
-
-			</table>
-		</center>
-	</form>
-
+	<div class="wrap">
+		<div id="btnImgGroup">
+	<img src="/LinkFlower/img/login/join.PNG" width="300"> <br/><hr>
+			<div class="join">
+				<a href="/LinkFlower/shopjoin.ap"><img class="img" alt="ê¸°ì—…íšŒì›"
+					src="/LinkFlower/img/login/signup1.gif"></a>
+			</div>
+			<div class="join">
+				<a href="/LinkFlower/personjoin.ap" ><img class="img" alt="ì¼ë°˜íšŒì›"
+					src="/LinkFlower/img/login/signup2.gif"></a>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

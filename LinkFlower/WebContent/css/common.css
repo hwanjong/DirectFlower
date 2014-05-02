@@ -11,6 +11,9 @@
 .w45{
 	width:45px;
 }
+.ib{
+	display: inline-block;
+}
 #tabs{
 	margin: auto;
 }
@@ -30,6 +33,39 @@ p{
 }
 .centerdiv{
 	text-align:center;
+	margin-top :30px;
 	margin-bottom: 50px;
 	
 }
+
+.progress{
+	width: 90%;
+}
+#shopInfo{
+	margin-top: 20px;
+	margin-bottom:50px;
+	padding: 10px;
+	
+}
+.shop{
+	width :30%;
+	height: 295px;
+	padding: 10px;
+	border: 1px groove;
+	display: inline-block;
+}
+.shop #like{
+	float: right;
+}
+.infoList{
+	width :45%;
+	height: 295px;
+	padding: 10px;
+	border: 1px groove;
+	display: inline-block;
+	vertical-align: top;
+}
+
+
+.ui-datepicker{ font-size: 12px; width: 300px; }
+
