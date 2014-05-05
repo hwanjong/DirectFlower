@@ -4,20 +4,19 @@ import hello.annotation.Mapping;
 import hello.annotation.RootURL;
 import hello.mv.ModelView;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.Enumeration;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.startup.UserDatabase;
-
-import dao.UserDAO;
-
+import bean.Flower;
 import bean.LocationInfo;
 import bean.User;
+import dao.FindShopDAO;
+import dao.ShopInfoDAO;
+import dao.UserDAO;
 
 @RootURL("/")
 public class RootController {
@@ -25,6 +24,11 @@ public class RootController {
 	@Mapping(url="/main.ap")
 	ModelView getMain(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/main");
+		FindShopDAO findShopDao = new FindShopDAO();
+		ArrayList<Flower> shopList = findShopDao.getFavoriteShop();
+		
+		mv.setModel("shopList", shopList);
+		
 		return mv;
 	}
 
@@ -34,33 +38,12 @@ public class RootController {
 		return mv;
 	}
 	
-	@Mapping(url="/idcheck.ap",method="GET")
-	ModelView checkId(HttpServletRequest request,HttpServletResponse response){
-		String user_id = request.getParameter("userid");
-		System.out.println(user_id);
-		ModelView mv = new ModelView("/idCheck");
-		
-		UserDAO userDao = new UserDAO();
-		if(userDao.checkId(user_id)==true){
-			mv.setModel("checkUser", false);
-		}else{
-			mv.setModel("checkUser", true);
-		}
-		return mv;
-	}
-	@Mapping(url="/fail.ap")
-	ModelView getFail(HttpServletRequest request,HttpServletResponse response){
-		ModelView mv = new ModelView("/fail");
-		return mv;
-	}
-	
 	@Mapping(url="/popupLogin.ap")
 	ModelView getPopupLoginl(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/popupLogin");
 		return mv;
 	}
 	
-
 	@Mapping(url="/login.ap",method="POST")
 	ModelView findId(HttpServletRequest request,HttpServletResponse response){
 		HttpSession session =  request.getSession();
@@ -102,6 +85,29 @@ public class RootController {
 		return mv;
 	}
 	
+	@Mapping(url="/shopjoin.ap",method="POST", bean="bean.Flower")
+	ModelView joinShop(HttpServletRequest request,HttpServletResponse response,Object bean){
+		Flower flower = (Flower)bean;
+		flower.makeUser();
+		
+		User user = flower.getUser();
+		
+		ModelView mv;
+		
+		UserDAO userDao = new UserDAO();
+		int newShopNum = userDao.addShop(flower);
+		
+		if(newShopNum!=0){
+			user.setShopNum(newShopNum);
+			request.getSession().setAttribute("user", user);
+			mv = new ModelView("redirect:/LinkFlower/main.ap");
+		}else{
+			mv = new ModelView("/shopjoin");
+			mv.setModel("fail", true);
+		}
+		return mv;
+	}
+	
 	@Mapping(url="/personjoin.ap")
 	ModelView getPersonJoin(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/personjoin");
@@ -122,14 +128,17 @@ public class RootController {
 			return mv;
 		}
 		
-		ModelView mv = new ModelView("/main");
+		ModelView mv = new ModelView("redirect:/LinkFlower/main.ap");
 		return mv;
 	}
 	
 
-	@Mapping(url="/order.ap")
+	@Mapping(url="/order.ap", method="GET")
 	ModelView getOrder(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/order");
+		String shopNum = request.getParameter("id");
+		ShopInfoDAO shopInfoDao = new ShopInfoDAO();
+		shopInfoDao.countIncreasing(shopNum);
 		return mv;
 	}
 
@@ -141,29 +150,15 @@ public class RootController {
 			e.printStackTrace();
 		}
 		LocationInfo info = (LocationInfo) bean;
-		System.out.println(info.getLat());
-		System.out.println(info.getLng());
-		String select = info.getOptionsRadios();
-		String inputValue = null;
-		System.out.println("select : "+select);
-		//select도 빈으로 테스트해보는중이였음
-		if(select.equals("option1")){
-			System.out.println("내위치로찾기");
-	  		inputValue="내위치";
-		}else if(select.equals("option2")&&info.getLat()!=""){
-			System.out.println(request.getParameter("address"));
-			inputValue=request.getParameter("address");
-		}else if(select.equals("option3")){
-			System.out.println(request.getParameter("shopName"));
-			inputValue=request.getParameter("shopName");
-		}
-
-		HttpSession session = request.getSession();
-
+		ArrayList<Flower> findRangeShop;
 		ModelView mv = new ModelView("/findShop");
-		mv.setModel("info", info);
 
-		request.setAttribute("value", inputValue);
+		
+		FindShopDAO findShopDao = new FindShopDAO();
+		findRangeShop=findShopDao.findRangeShop(info);
+		System.out.println("범위내 찾은꽃집 : ");
+		mv.setModel("shopList", findRangeShop);
+		mv.setModel("info", info);
 		
 		//		request.setAttribute("model",mv);// 가 자동으로 등록됨
 		//따라서 꺼낼시에  ((ModelView)request.getAttribute("model")).getModel("id"); 로 꺼낸다

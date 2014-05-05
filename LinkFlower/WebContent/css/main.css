@@ -24,12 +24,8 @@ hr{
 	border: 1px groove;
 }
 .wrap div{
-	border: 1px groove;
 	padding: 0px 10px;
 	margin-bottom: 15px;
-	border-left: 0px;
-	border-right: 0px;
-	border-top: 0px;
 }
 .bottom{
 	margin-top: 50px;

@@ -23,9 +23,9 @@
 
 	<mappers>
 		<mapper resource="mapper/UserMapper.xml" />
+		<mapper resource="mapper/ShopMapper.xml" />
 		<!-- 
-		<mapper resource="mapper/MainTopicMapper.xml" />
-		<mapper resource="mapper/OpinionMapper.xml" />
+		<mapper resource="mapper/Shop.xml" />
 		<mapper resource="mapper/InterestMapper.xml" />
 		<mapper resource="mapper/SubTopicMapper.xml" />
 		<mapper resource="mapper/ParticipantMapper.xml" />

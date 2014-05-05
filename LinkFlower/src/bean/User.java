@@ -7,7 +7,7 @@ public class User implements Serializable{
 	private String pw;
 	private String name;
 	private String phoneNum;
-	private String shopNum;
+	private int shopNum;
 	
 	public String getUserId() {
 		return userId;
@@ -33,10 +33,10 @@ public class User implements Serializable{
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
-	public String getShopNum() {
+	public int getShopNum() {
 		return shopNum;
 	}
-	public void setShopNum(String shopNum) {
+	public void setShopNum(int shopNum) {
 		this.shopNum = shopNum;
 	}
 

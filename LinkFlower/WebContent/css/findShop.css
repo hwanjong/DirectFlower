@@ -1,12 +1,11 @@
 @CHARSET "UTF-8";
 
 #event{
-	border: 1px groove;
 	margin: 10px 0px;
+	height :250px;
 	padding: 5px;
 }
 #map {
-	border: 1px groove;
 	padding: 5px;
 	
 }
@@ -15,6 +14,7 @@
 	width: 500px;
 	height: 500px;
 	display: inline-block;
+	border: 1px groove;
 }
 
 #listView {
@@ -34,11 +34,10 @@
 	margin-top: 20px;
 	margin-bottom:50px;
 	padding: 10px;
-	border: 1px groove;
 }
 .shop{
 	width :30%;
-	height: 295px;
+	height: 310px;
 	padding: 10px;
 	border: 1px groove;
 	display: inline-block;
@@ -47,18 +46,32 @@
 	float: right;
 }
 .infoList{
-	width :45%;
-	height: 295px;
+	width :43%;
+	height: 310px;
 	padding: 10px;
 	border: 1px groove;
 	display: inline-block;
 	vertical-align: top;
 }
 .send{
+	width :170px;
 	padding: 10px;
-	text-align: center;
+	vertical-align: bottom;
+	display: inline-block;
 }
-
+img#shopPhoto{
+	width: 150px;
+	height: 100px;
+}
+a:hover{
+	cursor: pointer;
+}
+.productList .alert{
+	margin-bottom: 5px;
+}
+.send .btn{
+	width: 167px;
+}
 #selectable .ui-selecting { background: #FECA40; }
   #selectable .ui-selected { background: #F39814; color: white; }
   #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }

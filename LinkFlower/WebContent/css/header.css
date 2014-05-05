@@ -16,6 +16,20 @@
 	text-decoration: line-through;
 }
 
+.table .w70{
+	width: 70;
+}
+.table .w200{
+	widows: 200;
+}
+
+p.title{
+	font-size :15pt;
+	border-bottom: 1px solid;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
 .container{
 	margin: auto;
 }

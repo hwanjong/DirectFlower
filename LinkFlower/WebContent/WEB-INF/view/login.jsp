@@ -13,7 +13,7 @@
 		<img src="/LinkFlower/img/login/banner.PNG" width="300"> <br>
 		<hr width="80%" style="margin: auto;" size="3" color="green">
 
-			<form action="/LinkFlower/login.ap" method="post">
+			<form action="/LinkFlower/login.ap" method="post" name="myform">
 				<table style="margin: 10px auto;">
 
 					<tr>

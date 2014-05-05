@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ShopMapper">
+
+	<resultMap type="Flower" id="flowerFind">
+		<id column="shop_num" property="shopNum" />
+		<id column="event_comment" property="eventComment" />
+		<id column="event_count" property="eventCount" />
+		<id column="shop_location" property="shopLocation" />
+		<id column="shop_name" property="shopName" />
+		<id column="shop_lat" property="shopLat" />
+		<id column="shop_lng" property="shopLng" />
+	</resultMap>
+
+
+	<insert id="insertShop" parameterType="Flower">
+		insert into
+		shop(shop_num,shop_name,shop_location,shop_lat,shop_lng,event_comment,event_count)
+		values(id.nextval,#{shopName},#{shopLocation},#{shopLat},#{shopLng},#{eventComment},#{eventCount})
+	</insert>
+	<select id="getNewShopNum" resultType="int">
+		select id.currval from
+		dual
+	</select>
+
+	<select id="findShop" parameterType="String" resultType="Flower" resultMap="flowerFind">
+		select * from shop where shop_name like '%'||#{shopName}||'%'
+	</select>
+
+	<delete id="deleteShop" parameterType="int">
+		delete from shop where shop_num=#{shopNum}
+	</delete>
+		
+	<select id="getFavoriteShop" resultType="Flower" resultMap="flowerFind">
+		select * from (select * from shop order by event_count desc) where rownum <![CDATA[ < ]]> 4 
+	</select>
+	
+	
+	<select id="findRangeShop" parameterType="LocationINfo" resultType="Flower" resultMap="flowerFind">
+		select * from shop where shop_lat between #{lat}-0.04 and #{lat}+0.04 and shop_lng between #{lng}-0.076 and #{lng}+0.076
+	</select>
+	
+	<update id="shopCountUp" parameterType="String">
+	    update shop set event_count=(select event_count from shop where shop_num=#{shopNum})+1 where shop_num=#{shopNum}
+	</update>
+
+
+</mapper>

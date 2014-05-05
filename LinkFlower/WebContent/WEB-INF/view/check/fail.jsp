@@ -9,7 +9,10 @@
 <body>
 failed.
 errorCode: ${model.error} 
-(정보수정실패)동일한 핸드폰번호 있음
+<br/>
+
+101 : (정보수정실패)동일한 핸드폰번호 있음
+102 : 기업회원가입실패
 
 </body>
 </html>

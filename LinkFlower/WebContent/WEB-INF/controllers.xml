@@ -5,8 +5,17 @@
 		<control-class>controller.UserPageController</control-class>
 	</control>
 	<control>
-		<control-name>dmdododo</control-name>
+		<control-name>root</control-name>
 		<control-class>controller.RootController</control-class>
+	</control>
+	
+	<control>
+		<control-name>shop</control-name>
+		<control-class>controller.ShopPageController</control-class>
+	</control>
+	<control>
+		<control-name>check</control-name>
+		<control-class>controller.CheckController</control-class>
 	</control>
 	<view>
 		<prefix>/WEB-INF/view</prefix>

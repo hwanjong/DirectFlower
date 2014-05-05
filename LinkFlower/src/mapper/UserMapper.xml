@@ -15,6 +15,10 @@
 		insert into	user_list(user_id,pw,name,phone_num)
 		values(#{userId},#{pw},#{name},#{phoneNum})
 	</insert>
+	<insert id="insertShopUser" parameterType="User">
+		insert into	user_list(user_id,pw,name,phone_num,shop_num)
+		values(#{userId},#{pw},#{name},#{phoneNum},#{shopNum})
+	</insert>
 	
 	<update id="changeInfo" parameterType="User">
 	    update user_list set pw=#{pw}, name=#{name}, phone_num=#{phoneNum} where user_id=#{userId}

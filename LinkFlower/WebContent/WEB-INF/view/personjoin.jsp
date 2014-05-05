@@ -10,7 +10,7 @@
 function openCheckId(){
 	var userid=$("#inputId").val();
 	if(userid){
-	url="/LinkFlower/idcheck.ap?userid="+userid;
+	url="/LinkFlower/check/idcheck.ap?userid="+userid;
 	window.open(url,"chkid","width=500,height=500,menubar=no,toolbar=no");
 	}else{
 	alert("ID를 입력하세요!");
@@ -47,6 +47,10 @@ function getInfo() {
 				<div class="controls">
 					<input type="text" id="inputId" placeholder="ID" name="userId">
 					<button class="btn" type="button" onclick="openCheckId()">중복검사</button>
+					<p>
+					<span id="success"></span>
+					<span id="fail" style="color: red"></span>
+					</p>
 				</div>
 			</div>
 
@@ -85,8 +89,8 @@ function getInfo() {
 						<option value="018">018</option>
 						<option value="019">019</option>
 
-					</select> - <input type=text class="input-mini" id="phone2" size=2 value=""> - <input
-						type=text class="input-mini" id="phone3" size=2 value="">
+					</select> - <input type=text class="input-mini" id="phone2" size=2 value="" maxlength="4"> - <input
+						type=text class="input-mini" id="phone3" size=2 value="" maxlength="4">
 				</div>
 			</div>
 

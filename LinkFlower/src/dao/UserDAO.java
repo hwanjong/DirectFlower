@@ -1,11 +1,13 @@
 package dao;
 
+import mapper.ShopMapper;
 import mapper.UserMapper;
 import mybatis.config.MyBatisManager;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import bean.Flower;
 import bean.User;
 
 public class UserDAO {
@@ -71,6 +73,38 @@ public class UserDAO {
 			session.close();
 		}
 		return true;
+	}
+
+	public int addShop(Flower flower){
+		SqlSession session = sqlSessionFactory.openSession();
+
+		UserMapper userMapper ;
+		ShopMapper shopMapper = null ;
+		int newShopNum=0;
+		try{
+			userMapper = session.getMapper(UserMapper.class);
+			shopMapper = session.getMapper(ShopMapper.class);
+			User user = flower.getUser();
+			
+			//샵을먼저넣음
+			shopMapper.insertShop(flower);
+			session.commit();
+			newShopNum = shopMapper.getNewShopNum();
+			
+			//유저를 넣음
+			user.setShopNum(newShopNum);
+			userMapper.insertShopUser(user);
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			//유저넣다가실패하면 꽃집지움
+			shopMapper.deleteShop(newShopNum);
+			session.commit();
+			return 0;
+		}finally{
+			session.close();
+		}
+		return newShopNum;
 	}
 	
 

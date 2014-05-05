@@ -35,7 +35,7 @@ public class UserPageController {
 		if(userDao.changeInfo(user)){
 			request.getSession().setAttribute("user", user);
 		}else{
-			mv.setView("/fail");
+			mv.setView("/check/fail");
 			mv.setModel("error", "101");
 		}
 		return mv;

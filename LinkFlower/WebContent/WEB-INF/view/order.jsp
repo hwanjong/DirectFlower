@@ -151,10 +151,7 @@
 				name="optionsRadios" id="optionsRadios2" value="option2" checked
 				onclick="checkDelivery()"> 배송
 			</label>
-			<p id="address">
-				<span class="w100 ib">배송지주소</span><input type="text" class="input-xxlarge"
-					name="address"><br />
-			</p>
+			
 			<span class="w100 ib">수 령 자 </span><input type="text"
 				id="targetName" name="targetName"> <span> 희망날짜 </span><input
 				class="input-medium" type="text" id="datepicker"><span> 시간</span><select
@@ -166,6 +163,10 @@
 					}
 				%>
 			</select>시
+			<p id="address">
+				<span class="w100 ib">배송지주소</span><input type="text" class="input-xxlarge"
+					name="address"><br />
+			</p>
 		</div>
 
 		<div id="send" class="centerdiv">

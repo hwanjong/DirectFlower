@@ -1,3 +1,13 @@
+CREATE TABLE Evaluation_list
+(
+	shop_num   NUMBER(8) NULL,
+	e_score    NUMBER(8) NULL,
+	e_comment  VARCHAR2(50) NULL,
+	user_id    VARCHAR2(50) NULL
+)
+;
+
+
 CREATE TABLE like_info
 (
 	user_id   VARCHAR2(50) NULL,
@@ -25,7 +35,7 @@ CREATE TABLE post
 	shop_num      NUMBER(8) NULL,
 	user_comment  VARCHAR2(50) NULL,
 	score         NUMBER(8) NULL,
-	user_id	VARCHAR2(50) NULL
+	user_id       VARCHAR2(50) NULL
 )
 ;
 
@@ -51,10 +61,13 @@ CREATE TABLE Sale_list
 CREATE TABLE Shop
 (
 	shop_num       NUMBER(8) NOT NULL,
-	event_comment  VARCHAR2(50) NULL,
+	event_comment  VARCHAR2(100) NULL,
 	event_count    NUMBER(8) NULL,
-	shop_location  VARCHAR2(50) NOT NULL,
-	shop_photo     VARCHAR2(50) NULL
+	shop_location  VARCHAR2(100) NOT NULL,
+	shop_photo     VARCHAR2(50) NULL,
+	shop_name      VARCHAR2(50) NULL,
+	shop_lat       VARCHAR2(50) NULL,
+	shop_lng       VARCHAR2(50) NULL
 )
 ;
 
@@ -82,10 +95,6 @@ CREATE TABLE User_list
 
 ALTER TABLE Product_list
 	ADD CONSTRAINT UQ_Product_list_price UNIQUE (price)
-;
-
-ALTER TABLE Shop
-	ADD CONSTRAINT UQ_Shop_shop_location UNIQUE (shop_location)
 ;
 
 ALTER TABLE User_list

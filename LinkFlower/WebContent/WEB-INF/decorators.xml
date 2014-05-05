@@ -3,7 +3,7 @@
 <decorators defaultdir="/decorators">
 	<!-- Any urls that are excluded will never be decorated by Sitemesh -->
 	<excludes>
-		<pattern>/idCheck.ap</pattern>
+		<pattern>/check/*</pattern>
 		<pattern>/popupLogin.ap</pattern>
 	</excludes>
 

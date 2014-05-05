@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,20 +17,19 @@
 						$("input[id=address]").attr("disabled", true);
 						$("input[id=name]").attr("disabled", true);
 						$("input[id=optionsRadios4]").attr("checked",true);
-						$('#addressSearch').hide();
 
 						$("input[name=optionsRadios]")
 								.click(
 										function() { // 라디오버튼 클릭 이벤트 
 											if ($("input[name=optionsRadios]:checked").val() == "option1") {
-												
+												//geolocation Start --------------
 												if (navigator.geolocation) {
 													navigator.geolocation.getCurrentPosition(function(
 																	position) {
 																var lat = position.coords.latitude;
 																var lng = position.coords.longitude;
 																$("input[id=lat]").val(lat);
-																$("input[id=lon]").val(lng);
+																$("input[id=lng]").val(lng);
 																alert("현재위치찾음 : "+ lat+ ", "+ lng);
 															});
 
@@ -37,40 +37,41 @@
 													// Browser doesn't support Geolocation
 													alert("위치찾기실패");
 												}
-												$("input[id=address]").val('');
+												
+												//geolocation END-------------
+												
+												initLocation();
 												$("input[id=address]").attr(
 														"disabled", true);
-												$("input[id=name]").val('');
 												$("input[id=name]").attr(
 														"disabled", true);
-												$('#addressSearch').hide();
-												
 												
 											} else if ($(
 													"input[name=optionsRadios]:checked")
 													.val() == "option2") {
-												$("input[id=name]").val('');
+												initLocation();
 												$("input[id=name]").attr(
 														"disabled", true);
 												$("input[id=address]").attr(
 														"disabled", false);
-												$('#addressSearch').show();
 											} else if ($(
 													"input[name=optionsRadios]:checked")
 													.val() == "option3") {
-												$("input[id=address]").val('');
+												initLocation();
 												$("input[id=address]").attr(
 														"disabled", true);
 												$("input[id=name]").attr(
 														"disabled", false);
-												$('#addressSearch').hide();
-												// 테스트1 라디오를 클릭하면 비활성화 
 											}
 										});
 						$('#addressSearch').click(
 								function(){
 									// Geocoding *****************************************************
 							        var address = $("input[id=address]").val(); // DB에서 주소 가져와서 검색하거나 왼쪽과 같이 주소를 바로 코딩.
+							        if(address==""){
+							        	alert("주소를입력하세요");
+							        	return;
+							        }
 							        var geocoder = new google.maps.Geocoder();
 							        geocoder.geocode( { 'address': address}, function(results, status) {
 							            if (status == google.maps.GeocoderStatus.OK) {
@@ -78,7 +79,7 @@
 							            	var lng = results[0].geometry.location.lng();
 							            	alert(address+"의 위치값찾음 :\n"+results[0].geometry.location.lat()+", "+results[0].geometry.location.lng());
 							            	$("input[id=lat]").val(lat);
-														$("input[id=lon]").val(lng);
+														$("input[id=lng]").val(lng);
 							                
 							            } else {
 							                alert("위치값을 찾을수 없음 (에러코드 : " + status+")");
@@ -86,6 +87,18 @@
 							        });
 							        // Geocoding // *****************************************************
 								});
+						
+						$('#nameSearch').click(
+								function(){
+									var shopName=$("#name").val();
+									if(shopName){
+										url="/LinkFlower/check/searchShop.ap?shopName="+shopName;
+										window.open(url,"chkid","width=500,height=500,menubar=no,toolbar=no");
+									}else{
+										alert("화원이름을입력하세요!");
+									}
+								});
+						
 						$("#search").click(
 								function(){
 									if($("input[name=optionsRadios]:checked").val() == "option4"){
@@ -100,52 +113,40 @@
 									}
 								});
 					});
+	function initLocation(){
+		$("#lat").val("");
+		$("#lng").val("");
+		$("input[id=address]").val('');
+		$("input[id=name]").val('');
+	}
 </script>
 </head>
 <body>
 	<div class="wrap">
 		<div id="event">
+		<p class="title">
+				<i class=" icon-th-list"></i> 인기 이벤트 TOP 3
+			</p>
 			<table class="table">
-				<thead>
-					<tr class="success">
-						<th colspan="4">● 인기 이벤트</th>
-				</thead>
 				<tbody>
+					<c:forEach var="shop" items="${model.shopList}">
 					<tr>
-						<td>1</td>
-						<td><a href="">[10주년 기념이벤트] 장미100송이 단돈 10000원</a></td>
-						<td>동산꽃화원</td>
-						<td>2014.4.2</td>
-						<td>4324</td>
+						<!-- <td style="text-indent: 2px;">${shop.shopNum}</td> -->
+						<td>${shop.eventComment} <span class="label label-important">${shop.eventCount}</span></td>
+						<td><a href="/LinkFlower/order.ap?id=${shop.shopNum}">${shop.shopName}</a></td>
 					</tr>
+				</c:forEach>
 
-					<tr>
-						<td>2</td>
-						<td><a href="">꽃바구니 전품목 50% SALE!!</a></td>
-						<td>예진꽃방</td>
-						<td>2014.4.5</td>
-						<td>2620</td>
-					</tr>
-
-					<tr>
-						<td>3</td>
-						<td><a href="">방문고객 꽃영양제 증정!!</a> <span
-							class="label label-success">New</span></td>
-						<td>푸른조경</td>
-						<td>2014.4.6</td>
-						<td>321</td>
-					</tr>
 				</tbody>
 			</table>
 		</div>
 
 		<div id="find">
 			<form action="findshop.ap" method="POST">
+			<p class="title">
+				<i class=" icon-th-list"></i> 꽃집 찾기
+			</p>
 				<table class="table">
-					<thead>
-						<tr class="success">
-							<th colspan="4">● 꽃집 찾기</th>
-					</thead>
 					<tbody>
 						<tr>
 							<td><label class="radio"> <input type="radio"
@@ -162,7 +163,7 @@
 									배달 주소지로 찾기
 							</label> 
 							<input id="address" name="address" class="span5" type="text"
-								placeholder="주소입력..">
+								placeholder="ex) 동작구 노량진동">
 								<button id="addressSearch" type="button" style="margin-bottom: 10px;">
 									<i class="icon-search"></i>
 								</button></td>
@@ -173,7 +174,10 @@
 									name="optionsRadios" id="optionsRadios3" value="option3">
 									꽃집이름으로 찾기
 							</label> <input id="name" name="shopName" class="span5" type="text"
-								placeholder="꽃집이름입력.."></td>
+								placeholder="ex) 노원화원">
+								<button id="nameSearch" type="button" style="margin-bottom: 10px;">
+									<i class="icon-search"></i>
+									</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -181,7 +185,7 @@
 					<label class="radio"> <input type="radio"
 						name="optionsRadios" id="optionsRadios4" value="option4"></label>
 					<input type="text" id="lat" name="lat"> <input
-						type="text" id="lon" name="lng">
+						type="text" id="lng" name="lng">
 				</div>
 
 			</form>
