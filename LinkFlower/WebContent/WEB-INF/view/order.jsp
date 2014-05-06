@@ -53,8 +53,7 @@
 					<span>동산화원</span><a href="#"><img id="like" width="50px"
 						height="50px" src="/LinkFlower/img/like_on.jpg"></a>
 				</p>
-				<img alt="꽃집사진" width="150px" height="150px"
-					src="/LinkFlower/img/photo.jpg">
+				<img id="shopPhoto" alt="꽃집사진" src="/LinkFlower/img/photo.jpg">
 
 				<p>
 					<span>평점 </span>8.4 / 10 (95개의 평가)
@@ -63,10 +62,17 @@
 					<div class="bar" style="width: 84%;">8.4</div>
 					<div class="bar bar-danger" style="width: 16%;">1.6</div>
 				</div>
+				<p>
+				<span>꽃집주소</span> 서울특별시 동작구 노량진동 77-4번지
+				</p>
+				<p>
+				<span>전화번호</span> 010-2625-3577
+				</p>
 			</div>
 			<div class="infoList">
-				<span>이벤트</span>발렌타인데이 이벤트진행중<br /> <br /> <span>후기</span><br />
-				<br />
+				<span>이벤트</span>
+				<div class="alert alert-success">발렌타인데이 이벤트진행중</div>
+				<span>후기</span><br /> <br />
 				<div style="overflow: auto; height: 200px">
 					<ul>
 						<li>좋은꽃집인것같아요 (9/10 점)</li>
@@ -94,7 +100,7 @@
 							<td>1</td>
 							<td>꽃바구니(대)</td>
 							<td class="unit_price">80000</td>
-							<td><select class='qty' onchange='recalculate();'>
+							<td><select class='qty input-mini' onchange='recalculate();'>
 									<%
 										for (int i = 0; i < 10; i++) {
 									%><option><%=i%></option>
@@ -108,7 +114,7 @@
 							<td>1</td>
 							<td>졸업식꽃다발</td>
 							<td class="unit_price">15000</td>
-							<td><select class='qty' onchange='recalculate();'>
+							<td><select class='qty input-mini' onchange='recalculate();'>
 									<%
 										for (int i = 0; i < 10; i++) {
 									%><option><%=i%></option>
@@ -122,7 +128,7 @@
 							<td>1</td>
 							<td>장미꽃 100송이</td>
 							<td class="unit_price">50000</td>
-							<td><select class='qty' onchange='recalculate();'>
+							<td><select class='qty input-mini' onchange='recalculate();'>
 									<%
 										for (int i = 0; i < 10; i++) {
 									%><option><%=i%></option>
@@ -152,7 +158,7 @@
 				onclick="checkDelivery()"> 배송
 			</label>
 			
-			<span class="w100 ib">수 령 자 </span><input type="text"
+			<span class="w100 ib">수령자 </span><input type="text"
 				id="targetName" name="targetName"> <span> 희망날짜 </span><input
 				class="input-medium" type="text" id="datepicker"><span> 시간</span><select
 				class="input-mini">
@@ -164,6 +170,8 @@
 				%>
 			</select>시
 			<p id="address">
+			<span class="w100 ib">수령자연락처</span><input type="text"
+					name="address"><br />
 				<span class="w100 ib">배송지주소</span><input type="text" class="input-xxlarge"
 					name="address"><br />
 			</p>

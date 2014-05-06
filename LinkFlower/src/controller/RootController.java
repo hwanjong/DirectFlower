@@ -156,7 +156,6 @@ public class RootController {
 		
 		FindShopDAO findShopDao = new FindShopDAO();
 		findRangeShop=findShopDao.findRangeShop(info);
-		System.out.println("범위내 찾은꽃집 : ");
 		mv.setModel("shopList", findRangeShop);
 		mv.setModel("info", info);
 		

@@ -99,6 +99,33 @@
 		$("#select").change(function() {
 			alert("값바뀜");
 		});
+
+		$("#auction").dialog({
+			autoOpen : false,
+			height : 550,
+			width : 850,
+			modal : false,
+		});
+	});
+
+	function checkDelivery() {
+		if ($("input[name=optionsRadios]:checked").val() == "option1") {
+			$("#address").hide();
+		} else {
+			$("#address").show();
+		}
+	}
+
+	function infoCheck() {
+		if ($("#infobox").css("display") == "none") {
+			$("#infobox").show();
+		} else {
+			$("#infobox").hide();
+		}
+	}
+
+	$(function() {
+		$("#datepicker").datepicker();
 	});
 </script>
 </head>
@@ -106,7 +133,7 @@
 	<div class="wrap">
 		<div id="event">
 			<p class="title">
-				<i class=" icon-th-list"></i> 주변꽃집 이벤트
+				<i class=" icon-th-list"></i> 주변 인기 이벤트 TOP 5
 			</p>
 			<table class="table" style="margin-bottom: 0px;">
 				<tbody>
@@ -135,6 +162,15 @@
 				</table>
 			</div>
 		</div>
+				<p style="color: red;">
+			※ 원하는 상품이 없을경우 역경매로 주변꽃집에 상품을 요청을 하세요
+			<button class="btn btn-info" id="clickMenu" onclick='$("#auction").dialog("open");'>상품 요청하기</button>
+			<br/><a style="font-size: 12px; color: #08c;" onclick="infoCheck()">역경매시스템이란?</a>
+		</p>
+		<p id="infobox" style="color: gray; display: none;">
+			원하는 상품이 없거나 마음에 들지 않을 때 <br /> 고객이 주변꽃집에게 상품을 요청하고 주변 꽃집들이 판매조건을
+			알려주어<br />고객이 최적 조건의 상품을 선택하는 시스템입니다.<br />
+		</p>
 		<div id="map">
 			<p class="title">
 				<i class=" icon-th-list"></i> 지도
@@ -150,6 +186,49 @@
 						위치: ${shop.shopLocation}
 					</div>
 				</c:forEach>
+			</div>
+		</div>
+		<div id="auction">
+			<div id="requestForm">
+				<form>
+					<p class="title">
+						<i class=" icon-th-list"></i> 상품요청하기(역경매시스템)
+					</p>
+					<p>
+						<span class="w100 ib">요청상품</span><input type="text"
+							name="requestName">
+					</p>
+					<label class="radio"> <input type="radio"
+						name="optionsRadios" id="optionsRadios1" value="option1"
+						onclick="checkDelivery()"> 방문
+					</label> <label class="radio"> <input type="radio"
+						name="optionsRadios" id="optionsRadios2" value="option2" checked
+						onclick="checkDelivery()"> 배송
+					</label> <span class="w100 ib">수 령 자 </span><input type="text"
+						class="input-mini" id="targetName" name="targetName"> <span>
+						희망날짜 </span><input class="input-medium" type="text" id="datepicker"><span>
+						시간</span><select class="input-mini">
+						<%
+							for (int i = 0; i < 24; i++) {
+						%><option><%=i%></option>
+						<%
+							}
+						%>
+					</select>시
+					<p id="address">
+						<span class="w100 ib">수령자연락처</span><input type="text"
+					name="address" placeholder="ex) 010-1234-1234"><br />
+						<span class="w100 ib">배송지주소</span><input type="text" class="input-xxlarge"
+					name="address"><br />
+			</p>
+				</form>
+			</div>
+			<div class="send" style="display: block; margin: auto;">
+				<a href="/LinkFlower/order.ap?id=123">
+					<button class="btn btn-large btn-info">
+						역 경매시작
+					</button>
+				</a>
 			</div>
 		</div>
 
@@ -173,8 +252,12 @@
 					<div class="bar" style="width: 84%;">8.4</div>
 					<div class="bar bar-danger" style="width: 16%;">1.6</div>
 				</div>
-
+				<p>
 				<span>꽃집주소</span> 서울특별시 동작구 노량진동 77-4번지
+				</p>
+				<p>
+				<span>전화번호</span> 010-2625-3577
+				</p>
 			</div>
 			<div class="infoList">
 				<span>이벤트</span>
@@ -209,12 +292,10 @@
 			<div class="send">
 				<a href="#"><button class="btn btn-large btn-success">
 						관심꽃집등록 <i class="icon-thumbs-up"></i>
-					</button></a> <a href="/LinkFlower/order.ap?id=123"><br/><br/><button
-						class="btn btn-large btn-info">주문하로가기</button></a> <br />
+					</button></a> <a href="/LinkFlower/order.ap?id=123"><br /> <br />
+					<button class="btn btn-large btn-info">주문하로가기</button></a> <br />
 			</div>
 		</div>
-
-
 	</div>
 
 </body>

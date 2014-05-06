@@ -39,10 +39,17 @@ public class CheckController {
 		String shopName = request.getParameter("shopName");
 		FindShopDAO findShopDao = new FindShopDAO();
 		ArrayList<Flower> shopList = findShopDao.findNameShop(shopName);
-		for(Flower flower :shopList ){
-			System.out.println(flower.getShopLocation());
-		}
 		mv.setModel("shopList", shopList );
+		
+		return mv;
+	}
+	
+	@Mapping(url="/searchAddress.ap",method="GET")
+	ModelView findAddress(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/check/searchAddress");
+		
+		String address = request.getParameter("address");
+		mv.setModel("address", address);
 		
 		return mv;
 	}

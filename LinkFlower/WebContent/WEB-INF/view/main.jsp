@@ -30,7 +30,7 @@
 																var lng = position.coords.longitude;
 																$("input[id=lat]").val(lat);
 																$("input[id=lng]").val(lng);
-																alert("현재위치찾음 : "+ lat+ ", "+ lng);
+																alert("현재위치찾음 : ("+lat + ", " + lng+")"+"\n꽃집찾기버튼을 눌려주세요");
 															});
 
 												} else {
@@ -68,24 +68,13 @@
 								function(){
 									// Geocoding *****************************************************
 							        var address = $("input[id=address]").val(); // DB에서 주소 가져와서 검색하거나 왼쪽과 같이 주소를 바로 코딩.
-							        if(address==""){
+							        if(address){
+							        	url="/LinkFlower/check/searchAddress.ap?address="+address;
+												window.open(url,"chkid","width=500,height=500,menubar=no,toolbar=no");
+							        }else{
 							        	alert("주소를입력하세요");
-							        	return;
+							        	
 							        }
-							        var geocoder = new google.maps.Geocoder();
-							        geocoder.geocode( { 'address': address}, function(results, status) {
-							            if (status == google.maps.GeocoderStatus.OK) {
-							            	var lat =results[0].geometry.location.lat();
-							            	var lng = results[0].geometry.location.lng();
-							            	alert(address+"의 위치값찾음 :\n"+results[0].geometry.location.lat()+", "+results[0].geometry.location.lng());
-							            	$("input[id=lat]").val(lat);
-														$("input[id=lng]").val(lng);
-							                
-							            } else {
-							                alert("위치값을 찾을수 없음 (에러코드 : " + status+")");
-							            }
-							        });
-							        // Geocoding // *****************************************************
 								});
 						
 						$('#nameSearch').click(

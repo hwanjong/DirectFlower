@@ -16,6 +16,7 @@
 	background-image: url(/LinkFlower/img/search.jpg);
 	width: 225px;
 	height: 225px;
+	border: 1px solid green;
 }
 
 hr{

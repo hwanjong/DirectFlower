@@ -62,6 +62,7 @@
 				if (status == google.maps.GeocoderStatus.OK) {
 					var lat = results[0].geometry.location.lat();
 					var lng = results[0].geometry.location.lng();
+					$("input[id=shopLocation]").val(results[0].formatted_address);
 					$("input[id=shopLat]").val(lat);
 					$("input[id=shopLng]").val(lng);
 

@@ -8,6 +8,9 @@
 .ml40{
 	margin-left: 40px;
 }
+.w100{
+	width: 100px;
+}
 
 .ib{
 	display: inline-block;
@@ -36,6 +39,7 @@ p.title{
 div.wrap {
 	width: 940px;
 	margin:0 auto;
+	margin-bottom: 20px;
 }
 
 span {

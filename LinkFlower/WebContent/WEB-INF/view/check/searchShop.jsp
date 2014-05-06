@@ -34,7 +34,7 @@ a:HOVER {
 </style>
 <script type="text/javascript">
 	function check(lat, lng) {
-		alert(lat + ", " + lng);
+		alert("주소값찾음 : ("+lat + ", " + lng+")"+"\n꽃집찾기버튼을 눌려주세요");
 		opener.document.getElementById("lat").value = lat;
 		opener.document.getElementById("lng").value = lng;
 		self.close();

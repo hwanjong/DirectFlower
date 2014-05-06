@@ -49,23 +49,27 @@ p{
 }
 .shop{
 	width :30%;
-	height: 295px;
+	height: 310px;
 	padding: 10px;
 	border: 1px groove;
 	display: inline-block;
 }
+
 .shop #like{
 	float: right;
 }
 .infoList{
 	width :45%;
-	height: 295px;
+	height: 310px;
 	padding: 10px;
 	border: 1px groove;
 	display: inline-block;
 	vertical-align: top;
 }
-
+img#shopPhoto{
+	width: 150px;
+	height: 100px;
+}
 
 .ui-datepicker{ font-size: 12px; width: 300px; }
 
