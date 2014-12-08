@@ -10,6 +10,7 @@
 <head>
 <title><decorator:title default="flossom" /></title>
 <link href="/LinkFlower/css/usermenu.css" rel="stylesheet">
+<link href="/LinkFlower/css/common.css" rel="stylesheet" type="text/css">
 <c:set var="pageId" value="<%=request.getServletPath()%>" />
 <decorator:head />
 </head>
@@ -20,11 +21,13 @@
 
 				<ul class="nav nav-tabs nav-stacked">
 					<li class="${pageId == '/user/orderInfo.ap'?'active':''}"><a
-						href="/LinkFlower/user/orderInfo.ap">주문조회</a></li>
+						href="/LinkFlower/user/orderInfo.ap">주문상태조회</a></li>
+					<li class="${pageId == '/user/adminAuction.ap'?'active':''}"><a
+						href="/LinkFlower/user/adminAuction.ap">역경매조회/낙찰</a></li>
 					<li class="${pageId == '/user/like.ap'?'active':''}"><a
-						href="/LinkFlower/user/like.ap">좋아하는꽃집</a></li>
+						href="/LinkFlower/user/like.ap">Like꽃집관리</a></li>
 					<li class="${pageId == '/user/info.ap'?'active':''}"><a
-						id="change" href="/LinkFlower/user/info.ap">회원정보수정</a></li>
+						href="/LinkFlower/user/info.ap">회원정보수정</a></li>
 				</ul>
 			</div>
 		</div>

@@ -1,3 +1,5 @@
+<%@page import="hello.mv.ModelView"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,43 +9,33 @@
 <title>좋아하는 꽃집</title>
 <script type="text/javascript">
 	$(function() {
-		$('.delete').click(function() {
+		$('.close').click(function() {
 			if (confirm("정말 삭제하시겠습니까?")) {
-				$(this).parents("tr").empty();
+				//$(this).parents("div").empty();
+
 			}
 		});
 	});
 </script>
 </head>
 <body>
-	<table>
+	<p>관심꽃집</p>
 
-		<tr>
-			<td><a href="/LinkFlower/order.ap?id=hwan7287">푸른꽃집</a>
-				<button class="delete btn">
-					<i class="icon-remove"></i>
-				</button></td>
-		</tr>
-		<tr>
-			<td><a href="/LinkFlower/order.ap?id=321">heaven Flower</a>
-				<button class="delete btn">
-					<i class="icon-remove"></i>
-				</button></td>
-		</tr>
-		<tr>
-			<td><a class="brand" href="/LinkFlower/order.ap?id=423">의정부꽃직매장</a>
-				<button class="delete btn">
-					<i class="icon-remove"></i>
-				</button></td>
-		</tr>
-		<tbody>
-		</tbody>
-	</table>
+	<c:if test="${empty model.likeShopList }">데이터없음  <script type="text/javascript">alert("좋아하는 꽃집을 등록하세요.");</script>
+	</c:if>
+	<c:forEach var="shop" items="${model.likeShopList}">
+		<div>
+			<div class="alert alert-block">
+				<button type="button" class="close" data-mismiss="alert">&times;</button>
+				<i class=" icon-ok-sign"></i> <a href="#${shop.shopNum}"> <span>${shop.shopName}</span>
+				</a> <span class="label label-important"> ${shop.eventCount}</span><br />
+				위치: ${shop.shopLocation}
+			</div>
+		</div>
+
+	</c:forEach>
 	<br />
 	<br />
-	<button class="btn" onclick="location.reload()">취소</button>
-	<button type="submit" class="btn btn-primary">변경사항 저장</button>
-
 
 </body>
 </html>

@@ -11,7 +11,7 @@ function openCheckId(){
 	var userid=$("#inputId").val();
 	if(userid){
 	url="/LinkFlower/check/idcheck.ap?userid="+userid;
-	window.open(url,"chkid","width=500,height=500,menubar=no,toolbar=no");
+	window.open(url,"chkid2","width=500,height=500,menubar=no,toolbar=no");
 	}else{
 	alert("ID를 입력하세요!");
 	}

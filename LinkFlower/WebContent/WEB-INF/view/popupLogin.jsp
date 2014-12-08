@@ -15,7 +15,7 @@
 	function submitLogin() {
 		$("form").submit();
 		//opener.location.reload();
-		opener.location.href = "/LinkFlower/user/orderInfo.ap";
+		opener.location.href = "/LinkFlower/main.ap";
 		self.close();
 	}
 </script>
@@ -41,6 +41,7 @@
 				<div class="controls">
 					<input type="button" class="btn" onclick="submitLogin()"
 						value="로그인">
+						<a href="/LinkFlower/join.ap"><input type="button" class="btn" value="회원가입"></a>
 				</div>
 			</div>
 		</form>

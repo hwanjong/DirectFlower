@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+#tab {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td,th {
+	border: 1px solid #444;
+	font: 12px/18px "맑은 고딕", "Malgun Gothic";
+	padding: 5px;
+}
+
+thead tr{
+	background: #888;
+	color: #fff;
+}
+
+tbody tr {
+	background: #EEE;
+}

@@ -36,10 +36,17 @@ a:HOVER {
 }
 </style>
 <script type="text/javascript">
-	function check(lat, lng) {
-		alert("주소값찾음 : ("+lat + ", " + lng+")"+"\n꽃집찾기버튼을 눌려주세요");
-		opener.document.getElementById("lat").value = lat;
-		opener.document.getElementById("lng").value = lng;
+	function check(lat, lng, shopLocation) {
+		if(opener.document.getElementById("lat")!=null){
+			alert("주소값찾음 : ("+lat + ", " + lng+")"+"\n꽃집찾기버튼을 눌려주세요");
+			opener.document.getElementById("lat").value = lat;
+			opener.document.getElementById("lng").value = lng;
+			opener.document.getElementById("address").value = shopLocation;
+		}else{//shopJoin페이지에서들어올때
+			opener.document.getElementById("shopLat").value = lat;
+			opener.document.getElementById("shopLng").value = lng;
+			opener.document.getElementById("shopLocation").value = shopLocation;
+		}
 		self.close();
 	}
 
@@ -52,11 +59,19 @@ a:HOVER {
 					if (status == google.maps.GeocoderStatus.OK) {
 						var len = results.length;
 						for ( var i = 0; i < len; i++) {
-							var location = results[i].formatted_address;
 							var lat = results[i].geometry.location.lat();
 							var lng = results[i].geometry.location.lng();
+							var tempLocation =results[i].formatted_address.split(' ');
+							var location='';
+							//대한민국을 없애주기
+							for(var i=1;i<tempLocation.length;i++){
+								location += tempLocation[i];
+								if(i<tempLocation.length-1){
+									location +=' ';
+								}
+							}
 							$("#wrap").append(
-									'<div class="alert alert-block"> <i class=" icon-ok-sign"></i> 주소 : <a onclick="check('+lat+','+lng+')"> <span><br/> '+location+'</span></a></div>'
+									'<div class="alert alert-block"> <i class=" icon-ok-sign"></i> 주소 : <a onclick="check('+lat+','+lng+',\''+location+'\')"> <span><br/> '+location+'</span></a></div>'
 									);
 							/*
 							$("input[id=lat]").val(lat);

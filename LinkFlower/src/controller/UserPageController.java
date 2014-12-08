@@ -4,12 +4,19 @@ import hello.annotation.Mapping;
 import hello.annotation.RootURL;
 import hello.mv.ModelView;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UserDAO;
+import mapper.UserMapper;
 
+import bean.Flower;
+import bean.Order;
 import bean.User;
+import dao.OrderInfoDAO;
+import dao.UserDAO;
 
 
 @RootURL("/user")
@@ -19,6 +26,13 @@ public class UserPageController {
 	ModelView getOrderInfo(HttpServletRequest request,HttpServletResponse response){ // bean 사용 안할시 Object bean 빼면됨
 		
 		ModelView mv = new ModelView("/user/orderInfo");
+		String userId = ((User)request.getSession().getAttribute("user")).getUserId();
+		System.out.println("[userpage] "+userId+" ("+new Date()+") - "+mv.getView());
+		OrderInfoDAO orderinfoDAO = new OrderInfoDAO();
+		ArrayList<Order> orderList = orderinfoDAO.getOrderInfoId(userId);
+
+		mv.setModel("orderList", orderList);
+		
 		return mv;
 	}
 
@@ -44,6 +58,36 @@ public class UserPageController {
 	@Mapping(url="/like.ap")
 	ModelView getUserLike(HttpServletRequest request, HttpServletResponse response){
 		ModelView mv = new ModelView("/user/userLike");
+		String userId = ((User) request.getSession().getAttribute("user")).getUserId();
+		UserDAO userDao = new UserDAO();
+		ArrayList<Flower> likeShoplist =  userDao.getLikeShop(userId);
+		mv.setModel("likeShopList", likeShoplist);
+		
+		return mv;
+	}
+	
+	@Mapping(url="/adminAuction.ap")
+	ModelView getAdminAuction(HttpServletRequest request, HttpServletResponse response){
+		ModelView mv = new ModelView("/user/adminAuction");
+		String userId = ((User) request.getSession().getAttribute("user")).getUserId();
+		OrderInfoDAO orderInfoDAO = new OrderInfoDAO();
+		ArrayList<Order> auctionList = orderInfoDAO.getAuctionInfo(userId);
+		ArrayList<Order> applyAuctionList = orderInfoDAO.getApplyAuctionInfo(userId);
+		mv.setModel("auctionList", auctionList);
+		mv.setModel("applyAuctionList", applyAuctionList);
+		return mv;
+	}
+	
+	@Mapping(url="/adminAuction.ap", method="post")
+	ModelView applyAdminAuction(HttpServletRequest request, HttpServletResponse response){
+		String userId = ((User) request.getSession().getAttribute("user")).getUserId();
+		String orderId = request.getParameter("orderId");
+		String shopNum = request.getParameter("shopNum");
+		System.out.println("[confirm auction]"+userId+": "+orderId+", " + shopNum+" ("+new Date()+")");
+		OrderInfoDAO orderInfoDAO = new OrderInfoDAO();
+		orderInfoDAO.applyConfirmOrder(orderId, shopNum);
+		
+		ModelView mv = new ModelView("redirect:/LinkFlower/user/orderInfo.ap");
 		return mv;
 	}
 	

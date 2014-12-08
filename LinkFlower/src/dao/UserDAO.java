@@ -1,5 +1,9 @@
 package dao;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import mapper.OrderMapper;
 import mapper.ShopMapper;
 import mapper.UserMapper;
 import mybatis.config.MyBatisManager;
@@ -34,7 +38,7 @@ public class UserDAO {
 		User findUser =null;
 		try{
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			findUser=mapper.getUserInfo(user);
+			findUser=mapper.getUserInfoLogin(user);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -74,8 +78,8 @@ public class UserDAO {
 		}
 		return true;
 	}
-
-	public int addShop(Flower flower){
+	
+	public int addShop(Flower flower,int option){//1번은 정상가입, 2번은 구글데이터 랜덤아뒤가입
 		SqlSession session = sqlSessionFactory.openSession();
 
 		UserMapper userMapper ;
@@ -88,16 +92,19 @@ public class UserDAO {
 			
 			//샵을먼저넣음
 			shopMapper.insertShop(flower);
-			session.commit();
 			newShopNum = shopMapper.getNewShopNum();
 			
 			//유저를 넣음
 			user.setShopNum(newShopNum);
-			userMapper.insertShopUser(user);
+			if(option==1)
+				userMapper.insertShopUser(user);
+			else
+				userMapper.insertRandomShopUser(user);
 			session.commit();
 		}catch(Exception e){
 			e.printStackTrace();
 			//유저넣다가실패하면 꽃집지움
+			//session.rollback();
 			shopMapper.deleteShop(newShopNum);
 			session.commit();
 			return 0;
@@ -105,6 +112,66 @@ public class UserDAO {
 			session.close();
 		}
 		return newShopNum;
+	}
+
+	public void registLike(String userId, String shopNum) {
+		SqlSession session = sqlSessionFactory.openSession();
+
+		
+		try{
+			UserMapper userMapper= session.getMapper(UserMapper.class);
+			ArrayList<String> havaList = userMapper.getLikeInfo(userId,Integer.parseInt(shopNum));
+			
+			if(havaList.size()==0){//일치하는 좋아요가없음 좋아요등록가능
+				userMapper.insertLike(userId,Integer.parseInt(shopNum));
+			}
+			
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			//유저넣다가실패하면 꽃집지움
+		}finally{
+			session.close();
+		}
+	}
+
+	public ArrayList<Flower> getLikeShop(String userId) {
+		SqlSession session = sqlSessionFactory.openSession();
+		ArrayList<Flower> shopList =null;
+		
+		try{
+			ShopMapper mapper= session.getMapper(ShopMapper.class);
+			shopList =mapper.getLikeShop(userId);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			//유저넣다가실패하면 꽃집지움
+		}finally{
+			session.close();
+		}
+		return shopList;
+	}
+	
+	public ArrayList<User> getLikeUser(int shopNum) {
+		SqlSession session = sqlSessionFactory.openSession();
+		ArrayList<String> userIdList = null;
+		ArrayList<User> userList = null;
+		try{
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			userIdList = mapper.getLikeUser(shopNum);
+			if(userIdList.size()!=0){
+				userList = new ArrayList<User>();
+				for(String userId:userIdList){
+					userList.add(mapper.getUserInfo(userId));
+				}
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return userList;
 	}
 	
 

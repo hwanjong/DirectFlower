@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <c:if test="${model.fail==true}">
 	<script type="text/javascript">
-		alert("중복정보 가입불가");
+		alert("중복정보 가입불가(핸드폰)");
 	</script>
 </c:if>
 <script type="text/javascript"
@@ -52,6 +52,18 @@
 	}
 
 	$(document).ready(function() {
+		$('#addressSearch').click(
+				function(){
+					// Geocoding *****************************************************
+			        var address = $("input[id=shopLocation]").val(); // DB에서 주소 가져와서 검색하거나 왼쪽과 같이 주소를 바로 코딩.
+			        if(address){
+			        	url="/LinkFlower/check/searchAddress.ap?address="+address;
+								window.open(url,"chkid","width=500,height=500,menubar=no,toolbar=no");
+			        }else{
+			        	alert("주소를입력하세요");
+			        }
+				});
+		/*
 		$("#addressSearch").click(function() {
 			// Geocoding *****************************************************
 			var address = $("input[id=shopLocation]").val(); // DB에서 주소 가져와서 검색하거나 왼쪽과 같이 주소를 바로 코딩.
@@ -62,7 +74,16 @@
 				if (status == google.maps.GeocoderStatus.OK) {
 					var lat = results[0].geometry.location.lat();
 					var lng = results[0].geometry.location.lng();
-					$("input[id=shopLocation]").val(results[0].formatted_address);
+					var tempLocation =results[0].formatted_address.split(' ');
+					var location='';
+					//대한민국을 없애주기
+					for(var i=1;i<tempLocation.length;i++){
+						location += tempLocation[i];
+						if(i<tempLocation.length-1){
+							location +=' ';
+						}
+					}
+					$("input[id=shopLocation]").val(location);
 					$("input[id=shopLat]").val(lat);
 					$("input[id=shopLng]").val(lng);
 
@@ -72,6 +93,7 @@
 			});
 			// Geocoding // *****************************************************
 		});
+		*/
 	});
 </script>
 </head>
@@ -165,13 +187,6 @@
 							disabled="disabled" placeholder="latitude"> <input
 							type="text" class="input-small" id="shopLng" name="shopLng"
 							disabled="disabled" placeholder="longtitude">
-					</div>
-				</div>
-
-				<div class="control-group">
-					<label class="control-label" for="shopPhoto">대표 사진</label>
-					<div class="controls">
-						<input type="file" id="shopPhoto" name="shopPhoto">
 					</div>
 				</div>
 

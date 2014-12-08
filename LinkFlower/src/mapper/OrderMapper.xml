@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.OrderMapper">
+
+	<resultMap type="Order" id="orderMap">
+		<id column="order_id" property="orderId" />
+		<id column="user_id" property="userId" />
+		<id column="target_address" property="targetAddress" />
+		<id column="target_name" property="targetName" />
+		<id column="photo_url" property="photoUrl" />
+		<id column="request_time" property="requestTime" />
+		<id column="shop_num" property="shopNum" />
+		<id column="shop_name" property="shopName" />
+		<id column="target_phone" property="targetPhone" />
+		<id column="auction_name" property="auctionName" />
+		<id column="response_money" property="responseMoney" />
+	</resultMap>
+	<resultMap type="Product" id="productMap">
+		<id column="product_name" property="productName" />
+		<id column="user_id" property="userId" />
+		<id column="shop_num" property="shopNum" />
+		<id column="order_id" property="orderId" />
+	</resultMap>
+	<resultMap type="Posting" id="postingMap">
+		<id column="shop_num" property="shopNum" />
+		<id column="user_comment" property="userComment" />
+		<id column="user_id" property="userId" />
+	</resultMap>
+
+	<insert id="insertOrderVisit" parameterType="Order">
+		insert into
+		order_info
+		values(o_id.nextval,#{userId},'1','O',null,#{targetName},null,to_date(#{requestTime},'mm/dd/yyyy:hh24'),#{shopNum},null,null)
+	</insert>
+	<insert id="insertOrderDelivery" parameterType="Order">
+		insert into
+		order_info
+		values(o_id.nextval,#{userId},'1','X',#{targetAddress},#{targetName},null,to_date(#{requestTime},'mm/dd/yyyy:hh24'),#{shopNum},#{targetPhone},null)
+	</insert>
+	<insert id="insertOrderAuctionVisit" parameterType="Order">
+		insert into
+		order_info
+		values(o_id.nextval,#{userId},'4','O',null,#{targetName},null,to_date(#{requestTime},'mm/dd/yyyy:hh24'),null,null,#{auctionName})
+	</insert>
+	<insert id="insertOrderAuctionDelivery" parameterType="Order">
+		insert
+		into
+		order_info
+		values(o_id.nextval,#{userId},'4','X',#{targetAddress},#{targetName},null,to_date(#{requestTime},'mm/dd/yyyy:hh24'),null,#{targetPhone},#{auctionName})
+	</insert>
+	<insert id="insertApplyAuction">
+		insert into response_shop
+		values(#{orderId},#{shopNum},#{price},null)
+	</insert>
+
+	<select id="getNewOrderId" resultType="int">
+		select o_id.currval from
+		dual
+	</select>
+	<insert id="addAuctionList" parameterType="order">
+		insert into
+		auction_list
+		values(#{orderId},#{auctionLat},#{auctionLng})
+	</insert>
+
+	<insert id="insertOrderMapping">
+		insert into sale_list
+		values(#{orderId},#{productId},#{amount})
+	</insert>
+
+	<select id="getOrderInfo" resultType="Order" parameterType="int"
+		resultMap="orderMap">
+		select
+		order_id,user_id,state,visit,target_address,target_name,photo_url,to_char(request_time,'yyyy/mm/dd:hh24')
+		request_time,shop_num,target_phone from order_info where
+		shop_num=#{shopNum}
+	</select>
+	<select id="getOrderInfoId" resultType="Order" parameterType="String"
+		resultMap="orderMap">
+		select
+		order_id,user_id,state,visit,target_address,target_name,photo_url,to_char(request_time,'yyyy/mm/dd:hh24')
+		request_time,shop_num,target_phone from order_info where
+		user_id=#{userId}
+	</select>
+
+	<select id="getShopName" resultType="String" parameterType="int">
+		select shop_name from shop where shop_num=#{shopNum}
+	</select>
+
+	<select id="getState" resultType="String" parameterType="int">
+		select
+		state from order_info where order_id=#{orderId}
+	</select>
+	<update id="updateState">
+		update order_info set state=#{state} where
+		order_id=#{orderId}
+	</update>
+	<update id="updateAuctionOrder">
+		update order_info set state='1', shop_num=#{shopNum}
+		where order_id =
+		#{orderId}
+	</update>
+	<select id="getMyAuction" resultType="Order" parameterType="String"
+		resultMap="orderMap">
+		select * from order_info where user_id=#{userId} and state =
+		'4'
+	</select>
+	<select id="getApplyMyAuction" resultType="Order" parameterType="String"
+		resultMap="orderMap">
+		select o.order_id, r.shop_num, o.auction_name, s.shop_name,
+		r.response_money from
+		shop s inner join response_shop r on (s.shop_num
+		= r.shop_num) inner
+		join order_info o on (r.order_id = o.order_id)
+		where o.user_id = #{userId}
+		and o.state='4'
+	</select>
+	<delete id="deleteAuctionList" parameterType="String">
+		delete from
+		auction_list where order_id = #{orderId}
+	</delete>
+	<delete id="deleteResponseShopList">
+		delete from response_shop where order_id = #{orderId}
+		and shop_num!=#{shopNum}
+	</delete>
+	<select id="getOrderProductList" resultType="Product"
+		parameterType="int" resultMap="productMap">
+		select p.product_name, p.price,
+		s.amount, o.state, o.shop_num, o.user_id, o.order_id from sale_list s
+		inner join product_list p on (s.product_id = p.product_id) inner join
+		order_info o on(s.order_id = o.order_id) where s.order_id = #{orderId}
+	</select>
+	<insert id="addPosting" parameterType="Posting">
+		insert into post values(#{shopNum},#{userComment},#{score},#{userId})
+	</insert>
+	<select id="getPosting" resultType="Posting" parameterType="String" resultMap="postingMap">
+	 select p.shop_num, p.user_comment, p.score, p.user_id, u.name from post p inner join user_list u on(p.user_id = u.user_id) where p.shop_num=#{shopNum}
+	</select>
+</mapper>

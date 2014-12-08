@@ -1,3 +1,12 @@
+CREATE TABLE Auction_list
+(
+	order_id     NUMBER(8) NOT NULL,
+	auction_lat  VARCHAR2(50) NOT NULL,
+	auction_lng  VARCHAR2(50) NOT NULL
+)
+;
+
+
 CREATE TABLE Evaluation_list
 (
 	shop_num   NUMBER(8) NULL,
@@ -25,7 +34,10 @@ CREATE TABLE Order_info
 	target_address  VARCHAR2(50) NULL,
 	target_name     VARCHAR2(50) NULL,
 	photo_url       VARCHAR2(50) NULL,
-	request_time    DATE NOT NULL
+	request_time    DATE NOT NULL,
+	shop_num        NUMBER(8) NULL,
+	target_phone    VARCHAR2(50) NULL,
+	auction_name VARCHAR2(50)
 )
 ;
 
@@ -44,7 +56,19 @@ CREATE TABLE Product_list
 (
 	product_id    NUMBER(8) NOT NULL,
 	product_name  VARCHAR2(50) NOT NULL,
-	price         NUMBER(8) NOT NULL
+	price         NUMBER(8) NOT NULL,
+	special	VARCHAR2(8),
+	shop_num      NUMBER(8) NOT NULL
+)
+;
+
+
+CREATE TABLE Response_shop
+(
+	order_id        NUMBER(8) NOT NULL,
+	shop_num        NUMBER(8) NOT NULL,
+	response_money  NUMBER(8) NOT NULL,
+	response_photo  VARCHAR2(50) NULL
 )
 ;
 
@@ -65,7 +89,7 @@ CREATE TABLE Shop
 	event_count    NUMBER(8) NULL,
 	shop_location  VARCHAR2(100) NOT NULL,
 	shop_photo     VARCHAR2(50) NULL,
-	shop_name      VARCHAR2(50) NULL,
+	shop_name      VARCHAR2(70) NULL,
 	shop_lat       VARCHAR2(50) NULL,
 	shop_lng       VARCHAR2(50) NULL
 )
@@ -93,16 +117,8 @@ CREATE TABLE User_list
 
 
 
-ALTER TABLE Product_list
-	ADD CONSTRAINT UQ_Product_list_price UNIQUE (price)
-;
-
 ALTER TABLE User_list
 	ADD CONSTRAINT UQ_User_gcm_key UNIQUE (gcm_key)
-;
-
-ALTER TABLE User_list
-	ADD CONSTRAINT UQ_User_phone_num UNIQUE (phone_num)
 ;
 
 ALTER TABLE Order_info ADD CONSTRAINT PK_Order_info 

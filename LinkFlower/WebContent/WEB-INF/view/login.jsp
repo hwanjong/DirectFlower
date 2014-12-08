@@ -23,7 +23,7 @@
 
 					<tr>
 						<td align="center"><img src="/LinkFlower/img/login/pw.PNG"></td>
-						<td><input type=text name="pw" size=30 value=""></td>
+						<td><input type=password name="pw" size=30 value=""></td>
 					</tr>
 
 				</table>

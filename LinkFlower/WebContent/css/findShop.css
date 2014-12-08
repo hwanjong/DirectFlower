@@ -11,14 +11,12 @@
 }
 
 #map_canvas {
-	width: 500px;
-	height: 500px;
 	display: inline-block;
 	border: 1px groove;
 }
 
 #listView {
-	width: 380px;
+	width: 40%;
 	height: 460px;
 	margin-left: 20px; 
 	padding: 20px 10px;
@@ -30,7 +28,7 @@
 .progress{
 	width: 90%;
 }
-#shopInfo{
+.shopInfo{
 	margin-top: 20px;
 	margin-bottom:50px;
 	padding: 10px;

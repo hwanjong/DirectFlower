@@ -1,6 +1,15 @@
 @CHARSET "UTF-8";
+.w60{
+	width:60px;
+}
+.w80{
+	width:80px;
+}
 .w100{
 	width:100px;
+}
+.w180{
+	width: 180px;
 }
 .w200{
 	width: 200px;
@@ -53,6 +62,9 @@ p{
 	padding: 10px;
 	border: 1px groove;
 	display: inline-block;
+}
+.subContents{
+	height: 400px;
 }
 
 .shop #like{

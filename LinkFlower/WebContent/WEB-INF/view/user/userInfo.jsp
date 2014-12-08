@@ -36,6 +36,7 @@
 </script>
 </head>
 <body>
+<p>회원정보수정</p>
 	<form class="form-horizontal" method="POST" action="/LinkFlower/user/info.ap">
 		<div class="control-group">
 			<label class="control-label" for="inputEmail">I D</label>

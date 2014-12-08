@@ -14,37 +14,109 @@
 		<id column="shop_lng" property="shopLng" />
 	</resultMap>
 
+	<resultMap type="Product" id="productMap">
+		<id column="product_id" property="productId" />
+		<id column="product_name" property="productName" />
+		<id column="shop_num" property="shopNum" />
+	</resultMap>
+
+	<resultMap type="Order" id="orderMap">
+		<id column="order_id" property="orderId" />
+		<id column="user_id" property="userId" />
+		<id column="target_address" property="targetAddress" />
+		<id column="target_name" property="targetName" />
+		<id column="photo_url" property="photoUrl" />
+		<id column="request_time" property="requestTime" />
+		<id column="shop_num" property="shopNum" />
+		<id column="target_phone" property="targetPhone" />
+		<id column="auction_name" property="auctionName" />
+		<id column="auction_lat" property="auctionLat" />
+		<id column="auction_lng" property="auctionLng" />
+
+	</resultMap>
+
 
 	<insert id="insertShop" parameterType="Flower">
 		insert into
 		shop(shop_num,shop_name,shop_location,shop_lat,shop_lng,event_comment,event_count)
 		values(id.nextval,#{shopName},#{shopLocation},#{shopLat},#{shopLng},#{eventComment},#{eventCount})
 	</insert>
+	<insert id="insertProduct" parameterType="Product">
+		insert into
+		product_list
+		values(p_id.nextval,#{productName},#{price},#{special},#{shopNum})
+	</insert>
+	<delete id="deleteProduct" parameterType="String">
+		delete from
+		product_list where product_id = #{productId}
+	</delete>
+
 	<select id="getNewShopNum" resultType="int">
 		select id.currval from
 		dual
 	</select>
 
-	<select id="findShop" parameterType="String" resultType="Flower" resultMap="flowerFind">
-		select * from shop where shop_name like '%'||#{shopName}||'%'
+	<select id="findShop" parameterType="String" resultType="Flower"
+		resultMap="flowerFind">
+		select * from shop where shop_name like
+		'%'||#{shopName}||'%'
+	</select>
+
+
+	<select id="getProductList" parameterType="int" resultType="Product"
+		resultMap="productMap">
+		select * from product_list where shop_num=#{shopNum} order
+		by special desc nulls last
 	</select>
 
 	<delete id="deleteShop" parameterType="int">
-		delete from shop where shop_num=#{shopNum}
+		delete from shop where
+		shop_num=#{shopNum}
 	</delete>
-		
+
 	<select id="getFavoriteShop" resultType="Flower" resultMap="flowerFind">
-		select * from (select * from shop order by event_count desc) where rownum <![CDATA[ < ]]> 4 
+		select * from (select * from shop order by event_count desc) where
+		rownum <![CDATA[ < ]]>
+		4
 	</select>
-	
-	
-	<select id="findRangeShop" parameterType="LocationINfo" resultType="Flower" resultMap="flowerFind">
-		select * from shop where shop_lat between #{lat}-0.04 and #{lat}+0.04 and shop_lng between #{lng}-0.076 and #{lng}+0.076
+
+
+	<select id="findRangeShop" parameterType="LocationINfo"
+		resultType="Flower" resultMap="flowerFind">
+		select * from shop where shop_lat
+		between #{lat}-0.04 and #{lat}+0.04 and shop_lng between #{lng}-0.076
+		and #{lng}+0.076 order by event_count desc
 	</select>
-	
+	<select id="findRangeAuction" parameterType="LocationINfo"
+		resultType="Order" resultMap="orderMap">
+		select * from order_info natural join
+		auction_list where order_id IN (select order_id from auction_list
+		where auction_lat between #{lat}-0.04 and #{lat}+0.04 and auction_lng
+		between #{lng}-0.076 and #{lng}+0.076) and state = 4
+	</select>
+
 	<update id="shopCountUp" parameterType="String">
-	    update shop set event_count=(select event_count from shop where shop_num=#{shopNum})+1 where shop_num=#{shopNum}
+		update shop set event_count=(select event_count from shop where
+		shop_num=#{shopNum})+1 where shop_num=#{shopNum}
+	</update>
+	<update id="updateProduct" parameterType="Product">
+		update product_list set product_name=#{productName}, price=#{price},
+		special=#{special} where product_id=#{productId}
 	</update>
 
+	<select id="shopPhoneNum" parameterType="int" resultType="String">
+		select
+		phone_num from user_list where shop_num=#{shopNum}
+	</select>
+	<select id="getFlowerInfo" parameterType="int" resultType="Flower"
+		resultMap="flowerFind">
+		select * from shop where shop_num=#{shopNum}
+	</select>
+
+	<select id="getLikeShop" parameterType="String" resultType="Flower"
+		resultMap="flowerFind">
+		select * from shop where shop_num IN (select shop_num from
+		like_info where user_id=#{userId})
+	</select>
 
 </mapper>

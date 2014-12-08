@@ -39,6 +39,9 @@ public class User implements Serializable{
 	public void setShopNum(int shopNum) {
 		this.shopNum = shopNum;
 	}
-
+	public String toString(){
+		return userId+", "+pw+", "+name+", "+phoneNum+", "+shopNum;
+		
+	}
 	
 }

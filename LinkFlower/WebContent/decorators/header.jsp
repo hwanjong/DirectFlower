@@ -16,6 +16,8 @@
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//code.jquery.com/jquery-1.9.1.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
+
 <decorator:head />
 </head>
 <body>
@@ -24,8 +26,9 @@
 			<div class="navbar-inner">
 				<ul class="nav">
 					<li><a href="/LinkFlower/main.ap">Home</a></li>
-					<li class="nouse"><a href="#">SiteMap</a></li>
-					<li class="nouse"><a href="#">About</a></li>
+					<li><a style="color: red" href="/LinkFlower/reauction.ap">역경매시스템</a></li>
+					<li><a href="#">이용방법</a></li>
+					<li><a style="color: red" href="/LinkFlower/check/searchGoogle.ap">관리자메뉴(꽃집자동가입)</a></li>
 				</ul>
 				<ul class="nav pull-right">
 					<c:choose>
@@ -34,19 +37,22 @@
 							<li><a href="/LinkFlower/join.ap">Join</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="/LinkFlower/user/orderInfo.ap">My Page</a></li>
+							<c:choose>
+								<c:when test="${user.shopNum==0}">
+									<li><a href="/LinkFlower/user/orderInfo.ap">My Page</a></li>
+								</c:when>
+								<c:otherwise>
+								<li><a href="/LinkFlower/shop/adminSale.ap">MyShop</a></li>
+								</c:otherwise>
+							</c:choose>
 							<li><a href="/LinkFlower/logout.ap">Logout</a></li>
 						</c:otherwise>
 					</c:choose>
-					<li class="nouse"><a href="#">ShopPage</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		<a href="/LinkFlower/main.ap"><img
-			src="/LinkFlower/img/flosum.jpg" width="100%"></a>
-	</div>
+	
 	<decorator:body />
 	<div id="fb-root"></div>
 </body>

@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Flower implements Serializable{
 	private User user;
@@ -9,7 +10,7 @@ public class Flower implements Serializable{
 	private String name;
 	private String phoneNum;
 	
-	private String shopNum;
+	private int shopNum;
 	private String shopName;
 	private String shopLocation;
 	private String shopLat;
@@ -17,8 +18,19 @@ public class Flower implements Serializable{
 	private Object shopPhoto;
 	private String eventComment;
 	private int eventCount;
+	private ArrayList<Product> productList;
+	
+	//포스팅관련 변수
+	private ArrayList<Posting> postingList;
+	private float scoreAverage;
 	
 	
+	public ArrayList<Product> getProductList() {
+		return productList;
+	}
+	public void setProductList(ArrayList<Product> productList) {
+		this.productList = productList;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -43,10 +55,10 @@ public class Flower implements Serializable{
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
-	public String getShopNum() {
+	public int getShopNum() {
 		return shopNum;
 	}
-	public void setShopNum(String shopNum) {
+	public void setShopNum(int shopNum) {
 		this.shopNum = shopNum;
 	}
 	public String getShopName() {
@@ -106,6 +118,18 @@ public class Flower implements Serializable{
 	}
 	public void setEventCount(int eventCount) {
 		this.eventCount = eventCount;
+	}
+	public ArrayList<Posting> getPostingList() {
+		return postingList;
+	}
+	public void setPostingList(ArrayList<Posting> postingList) {
+		this.postingList = postingList;
+	}
+	public float getScoreAverage() {
+		return scoreAverage;
+	}
+	public void setScoreAverage(float scoreAverage) {
+		this.scoreAverage = scoreAverage;
 	}
 
 }
